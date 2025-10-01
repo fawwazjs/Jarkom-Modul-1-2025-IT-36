@@ -502,6 +502,7 @@ ca34b0926cdc3242bbfad1c4a0b42cc2750d90db9a272d92cfb6cb7034d2a3bd
 
 w.exe:
 
+<img width="1920" height="997" alt="Screenshot From 2025-10-01 04-29-36" src="https://github.com/user-attachments/assets/0757b7fb-8891-4029-95b6-c49994b75e85" />
 
 
 Setup Frame: 1111
@@ -524,6 +525,7 @@ sha265sum
 
 e.exe:
 
+<img width="1920" height="997" alt="Screenshot From 2025-10-01 04-28-52" src="https://github.com/user-attachments/assets/32207eb6-45c0-47db-9a26-70d2750e2e80" />
 
 
 Setup Frame: 1295
@@ -546,34 +548,44 @@ tcp.port == 49506
 
 r.exe:
 
+<img width="1920" height="997" alt="Screenshot From 2025-10-01 04-28-39" src="https://github.com/user-attachments/assets/c3fccab0-e928-4f43-8009-7f3676a905f4" />
 
 
 Setup Frame: 2445
 
+<img width="1920" height="997" alt="Screenshot From 2025-10-01 04-25-33" src="https://github.com/user-attachments/assets/63d6ded1-558a-4aa7-8b72-68405d5cb05b" />
 
 
 Port: 60899
 tcp.port == 60899
+<img width="1920" height="997" alt="Screenshot From 2025-10-01 04-26-44" src="https://github.com/user-attachments/assets/ceecb518-f03b-400b-abad-bd918cc2e3f6" />
 
 
+<img width="1920" height="997" alt="Screenshot From 2025-10-01 04-26-55" src="https://github.com/user-attachments/assets/b6396d0f-3075-4916-943f-9eddc001fea3" />
 
 
+<img width="1920" height="997" alt="Screenshot From 2025-10-01 04-27-31" src="https://github.com/user-attachments/assets/1838e2ed-8dd8-4468-8abd-2e304d54573b" />
 
 
 
 t.exe:
 
+<img width="1920" height="997" alt="Screenshot From 2025-10-01 04-28-20" src="https://github.com/user-attachments/assets/1d1c51bc-97af-42fb-8b47-82249a533fcb" />
 
 
 Setup Frame: 2643
+<img width="1920" height="997" alt="Screenshot From 2025-10-01 04-30-59" src="https://github.com/user-attachments/assets/12c1d57f-b119-49ad-b16a-1d3e9ad7bae7" />
 
 
 
 Port: 50157
 tcp.port == 50157
+<img width="1920" height="997" alt="Screenshot From 2025-10-01 04-31-33" src="https://github.com/user-attachments/assets/665f74e1-47d5-49c9-aa6d-ddac8d3ddd02" />
+
+<img width="1920" height="997" alt="Screenshot From 2025-10-01 04-31-45" src="https://github.com/user-attachments/assets/b8e19c48-540a-43b3-bd7a-63e42c362b04" />
 
 
-
+<img width="1920" height="997" alt="Screenshot From 2025-10-01 04-32-17" src="https://github.com/user-attachments/assets/b757fb97-3d3d-4f82-a25d-47ee06eee793" />
 
 
 
@@ -612,6 +624,7 @@ Format: sha256
 Congratulations! Here is your flag: KOMJAR25{Y0u_4r3_4_g00d_4nalyz3r_blETB2xtXYXJAS5ghgqZqxg8B}
 
 No. 17
+<img width="1920" height="997" alt="Screenshot From 2025-10-01 07-36-33" src="https://github.com/user-attachments/assets/ceb8cb94-d57d-4700-a358-a304fdb0e044" />
 
 
 Statistics > Conversations
@@ -620,6 +633,7 @@ ip.addr == 10.6.27.102 && ip.addr == 107.180.50.162
 
 Statistics > Protocol Hierarchy
 
+<img width="1920" height="997" alt="Screenshot From 2025-10-01 07-42-08" src="https://github.com/user-attachments/assets/44fe03a6-db09-4c72-be35-751d0fd7fbb7" />
 
 
 
@@ -631,6 +645,7 @@ http
 
 Semuanya:
 http && ip.addr == 10.6.27.102 && ip.addr == 107.180.50.162
+<img width="1920" height="997" alt="Screenshot From 2025-10-01 07-47-33" src="https://github.com/user-attachments/assets/0c1a43cc-abcf-486c-9063-9fd4b80e0c62" />
 
 
 Urutan file pertama yang muncul berdasarkan GET (Server 107.180.50.162 (IP eksternal) mengirimkan file berdasarkan request client IP 10.6.27.102 (privat)):
@@ -641,10 +656,12 @@ Urutan file kedua yang muncul berdasarkan GET (Server 107.180.50.162 (IP ekstern
 
 File -> Export Objects -> HTTP -> knr.exe -> Save
 
+<img width="1920" height="997" alt="Screenshot From 2025-10-01 07-55-36" src="https://github.com/user-attachments/assets/01218570-1ae9-4363-b702-f626c2aae15e" />
 
 
 sha256sum knr.exe
 
+<img width="1920" height="997" alt="Screenshot From 2025-10-01 07-57-05" src="https://github.com/user-attachments/assets/8fcaf938-4bc2-4aa4-a805-2ea501044201" />
 
 
 Output:
@@ -670,6 +687,7 @@ Congratulations! Here is your flag: KOMJAR25{M4ster_4n4lyzer_9kTRAJDBg0k4TphQM6U
 
 No. 18
 
+<img width="1920" height="1003" alt="Screenshot From 2025-10-01 20-35-02" src="https://github.com/user-attachments/assets/f3a4654f-cee5-4f06-970f-2791aac087d3" />
 
 
 Statistics > Protocol Hierarchy
@@ -685,12 +703,14 @@ Alasan memilih SMB sebagai kemungkinan tempat malware:
 
 Buka FILE -> Export Objects -> SMB…
 
+<img width="1920" height="1003" alt="Screenshot From 2025-10-01 20-50-51" src="https://github.com/user-attachments/assets/829ce389-d6f5-4343-821e-1a15b5098230" />
 
 
 Di sini ada dua file yang kemungkinan merupakan malware, yaitu kedua file dengan ekstensi .exe.
 
 
 Save kedua file. Gunakan command sha256sum untuk mengetahui hash dari kedua file.
+<img width="1920" height="1003" alt="Screenshot From 2025-10-01 20-51-18" src="https://github.com/user-attachments/assets/0d4b5bcc-0e6c-4be4-bdf8-a29195ed8cc9" />
 
 
 
@@ -698,6 +718,7 @@ Output untuk file: %5cWINDOWS%5coiku9bu68cxqenfmcsos2aek6t07_guuisgxhllixv8dx2ee
 
 cf99990bee6c378cbf56239b3cc88276eec348d82740f84e9d5c343751f82560
 
+<img width="1920" height="1003" alt="Screenshot From 2025-10-01 20-52-21" src="https://github.com/user-attachments/assets/ba96bb43-336d-44d4-a9cb-5e595a2258e2" />
 
 
 Output untuk file:
@@ -742,11 +763,13 @@ No. 19
 Dalam sending email, protokol yang digunakan adalah SMTP.
 Filter:
 smtp
+<img width="1920" height="1003" alt="Screenshot From 2025-10-01 20-14-51" src="https://github.com/user-attachments/assets/7a9e7001-31ce-425d-a155-630412f58980" />
 
 
 
 Untuk mengetahui konten dari email yang dikirim tanpa terbagi-bagi menjadi paket-paket, maka kita bisa melakukan Follow TCP Stream
 
+<img width="1920" height="1003" alt="Screenshot From 2025-10-01 20-15-23" src="https://github.com/user-attachments/assets/4ddb0fef-eddb-4d44-aafb-2fd1bc95db39" />
 
 
 Seluruh isi dari email bisa dibaca.
