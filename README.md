@@ -40,12 +40,15 @@
 Walkthrough
 No. 14
 Statistics > Capture File Properties
+<img width="1624" height="321" alt="Screenshot From 2025-09-30 14-11-52" src="https://github.com/user-attachments/assets/d29f9533-d028-4aea-9be9-b60f35285d74" />
 
 http.response && !data-text-lines contains "Invalid credentials"
 Result: Frame 500320
 Request in Frame: 500315
+<img width="1920" height="921" alt="Screenshot From 2025-09-30 14-13-09" src="https://github.com/user-attachments/assets/c05df4bd-cb8a-464a-884f-67f5128efb0d" />
 
 Go > Go to packet > 500315
+<img width="1920" height="921" alt="Screenshot From 2025-09-30 14-17-19" src="https://github.com/user-attachments/assets/6abc8840-599d-4dc4-a00f-1373eaea0491" />
 
 ]t]EN@@Qe^@R 8|
 ja=POST /login.php HTTP/1.1 
@@ -57,6 +60,7 @@ Accept-Encoding: gzip
  
 username=n1enna&password=y4v4nn4_k3m3nt4r1
 
+<img width="1920" height="1001" alt="Screenshot From 2025-09-30 14-18-37" src="https://github.com/user-attachments/assets/3497a93a-d9f8-4cf9-a090-756d851a0628" />
 
 Follow HTTP Stream ^
 n1enna:y4v4nn4_k3m3nt4r1
@@ -137,6 +141,7 @@ Format: string
 Keystroke terletak pada kategori URB_INTERRUPT in dengan destination host (Host dari alat-alat USB)
 usb.transfer_type == 0x01 && !usb.src == host
 
+<img width="1920" height="1001" alt="Screenshot From 2025-09-30 15-59-05" src="https://github.com/user-attachments/assets/cf7c2de7-6d0f-4b70-829a-ce8bc535ea97" />
 
 
 Setiap paket umumnya hanya memuat satu keystroke. Untuk otomasi dan menampilkan seluruh stream keystroke dari target menggunakan tshark.
@@ -145,6 +150,7 @@ Data keystroke tersimpan pada field HID (usbhid.data).
 Command tshark:
 tshark -r /home/fedora/Downloads/hiddenmsg.pcapng   -Y 'usb.transfer_type == 0x01 && !usb.src == host'   -T fields -e usbhid.data
 
+<img width="1920" height="946" alt="Screenshot From 2025-09-30 16-04-44" src="https://github.com/user-attachments/assets/fdeb2b4f-1826-4c85-81dc-a9e52562d8cf" />
 
 
 Output:
@@ -372,6 +378,7 @@ Pipe output tshark ke python3:
 
 tshark -r /home/fedora/Downloads/hiddenmsg.pcapng   -Y 'usb.transfer_type == 0x01 && !usb.src == host'  -T fields -e usbhid.data | python3 hid2ascii.py
 
+<img width="1920" height="946" alt="Screenshot From 2025-09-30 16-18-19" src="https://github.com/user-attachments/assets/10ce14c9-06e1-4eaa-a420-400a4e8673a6" />
 
 
 
@@ -386,6 +393,7 @@ Congratulations! Here is your flag: KOMJAR25{K3yb0ard_W4rr10r_gz6mwpsdLTyJlTNVHe
 Ada sama dengan di akhir -> Base64. Decode:
 
 
+<img width="1920" height="859" alt="Screenshot From 2025-09-30 19-04-48" src="https://github.com/user-attachments/assets/dafd4d40-7699-4f82-96c2-b0ef35543568" />
 
 
 Output:
@@ -415,11 +423,13 @@ e.exe
 r.exe
 t.exe
 
+<img width="1920" height="997" alt="Screenshot From 2025-09-30 19-53-56" src="https://github.com/user-attachments/assets/6c0eb9d1-c86c-4485-91ed-eb581fa5836b" />
 
 Jumlah IP pada PCAP ada 5. IP 10.6.13.102 merupakan IP pertama yang meminta request SYN, Jumlah Bytes yang dikirim cukup besar, Merupakan IP private dan bukan IP eksternal dengan geolokasi. Potensi Malware.
 Jadi filter pertama:
 ip.src = 10.6.13.102
 
+<img width="1920" height="997" alt="Screenshot From 2025-09-30 19-57-44" src="https://github.com/user-attachments/assets/fae7acaf-d194-4de1-95f2-638edab03e5a" />
 
 
 FTP menjadi protokol dengan persentase Bytes terbesar pada PCAP. Memiliki potensi membawa malware. FTP didesain untuk mentransfer file.
@@ -427,6 +437,7 @@ FTP menjadi protokol dengan persentase Bytes terbesar pada PCAP. Memiliki potens
 Filter ke 2:
 ftp
 
+<img width="1920" height="997" alt="Screenshot From 2025-10-01 02-27-51" src="https://github.com/user-attachments/assets/4f1fd1d3-32d0-4b52-a89b-1b48a5194a18" />
 
 
 Secara langsung dapat terlihat dua frame yang menarik, yaitu frame 227 dan frame 231.
@@ -434,6 +445,7 @@ Sehingga:
 USER ind@psg420.com
 PASS PASS {6r_6e#TfT1p
 
+<img width="1920" height="997" alt="Screenshot From 2025-10-01 02-35-15" src="https://github.com/user-attachments/assets/c683932a-50c3-4300-8c87-2b05883da87f" />
 
 
 Dua command FTP yang menarik perhatian:
@@ -444,6 +456,7 @@ STOR pada file PCAP tidak menunjukkan adanya file malware dan hanya berupa logs.
 
 Jumlah ada 5: q.exe, w.exe, e.exe, r.exe, t.exe
 
+<img width="1920" height="997" alt="Screenshot From 2025-10-01 04-05-58" src="https://github.com/user-attachments/assets/98ebe473-9e86-4a97-b6ff-0445fc0b378d" />
 
 
 
@@ -453,6 +466,7 @@ Mencari IP dan port yang digunakan server untuk terhubung ke client dan mengundu
 
 Pindah ke SETUP frame: 241
 
+<img width="1920" height="997" alt="Screenshot From 2025-10-01 04-10-11" src="https://github.com/user-attachments/assets/d03247a4-3d53-4c99-be4b-76621f308f67" />
 
 
 File Transfer Protocol (FTP)
@@ -465,6 +479,7 @@ File Transfer Protocol (FTP)
 Filter paket yang datang (source) dari port 51089 dengan filter:
 tcp.port == 51089
 
+<img width="1920" height="997" alt="Screenshot From 2025-10-01 04-13-01" src="https://github.com/user-attachments/assets/362cb674-45a0-4c65-b76f-3e152ca58c06" />
 
 
 Kemudian pilih salah satu paket dan Follow TCP Stream
@@ -473,10 +488,12 @@ Isi dari TCP stream tersebut adalah Isi dari q.exe.
 Pilih:
 Entire Conversations -> Show As Raw -> Save As -> q.exe
 
+<img width="1920" height="997" alt="Screenshot From 2025-10-01 04-12-36" src="https://github.com/user-attachments/assets/00c03161-eb6e-4962-b413-bb6cf17150fe" />
 
 
 Gunakan command sha256sum untuk mengetahui hash dari q.exe:
 
+<img width="1920" height="997" alt="Screenshot From 2025-10-01 04-14-02" src="https://github.com/user-attachments/assets/4a1adb68-6136-4710-b22f-d36bc5c8da87" />
 
 
 
@@ -490,8 +507,11 @@ w.exe:
 Setup Frame: 1111
 
 
+<img width="1920" height="997" alt="Screenshot From 2025-10-01 04-15-47" src="https://github.com/user-attachments/assets/aa5f0380-f995-4f2a-b4ff-31b0e373842b" />
 
+<img width="1920" height="997" alt="Screenshot From 2025-10-01 04-17-34" src="https://github.com/user-attachments/assets/95b91cba-0cdc-44b4-b49e-4bccaa5c7c11" />
 
+<img width="1920" height="997" alt="Screenshot From 2025-10-01 04-17-06" src="https://github.com/user-attachments/assets/4b470a77-c0ba-485a-ac0c-021faebb4cf9" />
 
 
 SIZE -> Setup Frame -> Port server: 59785
@@ -500,12 +520,14 @@ Follow TCP Stream
 Save as w.exe
 sha265sum
 
+<img width="1920" height="997" alt="Screenshot From 2025-10-01 04-18-47" src="https://github.com/user-attachments/assets/0d80245e-b541-493e-8a9f-b21fc978a8c0" />
 
 e.exe:
 
 
 
 Setup Frame: 1295
+<img width="1920" height="997" alt="Screenshot From 2025-10-01 04-21-38" src="https://github.com/user-attachments/assets/3fad5f55-6cab-43e4-be7d-b535004e9d42" />
 
 
 
@@ -513,10 +535,13 @@ Port: 49506
 
 tcp.port == 49506
 
+<img width="1920" height="997" alt="Screenshot From 2025-10-01 04-23-04" src="https://github.com/user-attachments/assets/1a4dc2b3-2525-45ea-bafa-9e9ecfab66f2" />
 
 
+<img width="1920" height="997" alt="Screenshot From 2025-10-01 04-23-26" src="https://github.com/user-attachments/assets/91b085b1-ddde-40b9-8d9c-022973e59eae" />
 
 
+<img width="1920" height="997" alt="Screenshot From 2025-10-01 04-24-02" src="https://github.com/user-attachments/assets/6471dc1e-3bd9-44b5-8980-fe037e522e6c" />
 
 
 r.exe:
@@ -747,6 +772,7 @@ Congratulations! Here is your flag: KOMJAR25{Y0u_4re_J4rk0m_G0d_mZTuSO0QZ9AdMjOB
 
 No. 20
 
+<img width="1920" height="1003" alt="Screenshot From 2025-10-01 19-36-04" src="https://github.com/user-attachments/assets/486004da-d834-46ba-accf-8f16792f382c" />
 
 
 Statistics > Protocol Hierarchy
@@ -755,6 +781,7 @@ TLS menjadi protokol dengan persentase Bytes terbesar pada PCAP. Memiliki potens
 Filter:
 tls	
 
+<img width="1920" height="1003" alt="Screenshot From 2025-10-01 19-39-18" src="https://github.com/user-attachments/assets/7a40f897-1d40-450f-89ac-a3fc8bb144e6" />
 
 
 IP 10.4.1.101 merupakan IP dengan jumlah percakapan terbanyak dengan jumlah Bytes yang dikirim cukup besar pula, Merupakan IP private dan bukan IP eksternal dengan geolokasi. Potensi Malware.
@@ -769,25 +796,30 @@ TLS bersifat ECDHE di mana membutuhkan client-side pre-master secrets (SSLKEYLOG
 Import file key log:
 Edit -> Preferences -> Protocols -> TLS -> (Pre)-Master-Secret log filename -> Browse… -> keyslogfile.txt (sudah disediakan) -> Apply -> OK
 
+<img width="1920" height="1003" alt="Screenshot From 2025-10-01 19-49-08" src="https://github.com/user-attachments/assets/b17ed666-c58d-4fcb-a4d0-611d8d3c663a" />
 
 
 Sekarang paket TLS sudah didekripsi dan muncul paket-paket dengan protokol HTTP.
 
+<img width="1920" height="1003" alt="Screenshot From 2025-10-01 19-50-22" src="https://github.com/user-attachments/assets/ec643924-240b-40aa-84cc-5ab8f506e1d4" />
 
 
 Gunakan filter:
 http && http.request.method == "GET"
 
+<img width="1920" height="1003" alt="Screenshot From 2025-10-01 19-52-15" src="https://github.com/user-attachments/assets/48a19e28-4063-4b69-a69d-cb55ba5e076a" />
 
 
 
 Export file:
 File -> Export Objects -> HTTP… -> invest_20.dll -> Save -> invest_20.dll
 
+<img width="1920" height="1003" alt="Screenshot From 2025-10-01 19-55-51" src="https://github.com/user-attachments/assets/771b91cd-2502-45b4-ab9a-2e8e08c807ad" />
 
 
 Gunakan command sha256sum untuk mengetahui hash dari invest_20.dll.
 
+<img width="1920" height="1003" alt="Screenshot From 2025-10-01 19-58-08" src="https://github.com/user-attachments/assets/929589d4-2400-44b8-9473-1b73e04726f1" />
 
 
 Output:
