@@ -181,6 +181,36 @@ Rasulullah Shallallāhu ‘alaihi wa Sallam pernah bersabda:
     </ol>
 </blockquote>
 
+```bash
+nc 10.15.43.32 3401
+
+===== Soal 14 =====
+Difficulty: Easy
+Note: You can exit anytime by typing 'exit'
+
+How many packets are recorded in the pcapng file?
+Format: int
+> 500358
+
+What are the user that successfully logged in?
+Format: user:pass
+> n1enna:y4v4nn4_k3m3nt4r1
+
+In which stream were the credentials found?
+Format: int
+> 41824
+
+What tools are used for brute force?
+Format: Hydra v1.8.0-dev
+> Fuzz Faster U Fool v2.1.0-dev
+Congratulations! Here is your flag: KOMJAR25{Brut3_F0rc3_LlP4CsiExCnDT7yPEZP3GTJhX}
+```
+
+#### • Soal 14.a: How many packets are recorded in the pcapng file?
+#### • Soal 14.b: What are the user that successfully logged in?
+#### • Soal 14.c: In which stream were the credentials found?
+#### • Soal 14.d: What tools are used for brute force?
+
 ### • Soal 15
 <blockquote>
     <ol start="15">
@@ -201,6 +231,51 @@ Rasulullah Shallallāhu ‘alaihi wa Sallam pernah bersabda:
     </ol>
 </blockquote>
 
+```bash
+nc 10.15.43.32 3403
+
+===== Soal 16 =====
+Difficulty: Hard
+Note: You can exit anytime by typing 'exit'
+
+What credential did the attacker use to log in?
+Format: user:pass
+> ind@psg420.com:{6r_6e#TfT1p                                       
+
+How many files are suspected of containing malware?
+Format: int
+> 5
+
+What is the hash of the first file (q.exe)?
+Format: sha256
+> ca34b0926cdc3242bbfad1c4a0b42cc2750d90db9a272d92cfb6cb7034d2a3bd
+
+What is the hash of the second file (w.exe)?
+Format: sha256
+> 08eb941447078ef2c6ad8d91bb2f52256c09657ecd3d5344023edccf7291e9fc
+
+What is the hash of the third file (e.exe)?
+Format: sha256
+> 32e1b3732cd779af1bf7730d0ec8a7a87a084319f6a0870dc7362a15ddbd3199
+
+What is the hash of the fourth file (r.exe)?
+Format: sha256
+> 4ebd58007ee933a0a8348aee2922904a7110b7fb6a316b1c7fb2c6677e613884
+
+What is the hash of the fifth file (t.exe)?
+Format: sha256
+> 10ce4b79180a2ddd924fdc95951d968191af2ee3b7dfc96dd6a5714dbeae613a
+Congratulations! Here is your flag: KOMJAR25{Y0u_4r3_4_g00d_4nalyz3r_blETB2xtXYXJAS5ghgqZqxg8B}
+```
+
+#### • Soal 16.a: What credential did the attacker use to log in?
+#### • Soal 16.b: How many files are suspected of containing malware?
+#### • Soal 16.c: What is the hash of the first file (q.exe)?
+#### • Soal 16.d: What is the hash of the second file (w.exe)?
+#### • Soal 16.e: What is the hash of the third file (e.exe)?
+#### • Soal 16.f: What is the hash of the fourth file (r.exe)?
+#### • Soal 16.g: What is the hash of the fifth file (t.exe)?
+
 ### • Soal 17
 <blockquote>
     <ol start="17">
@@ -210,6 +285,31 @@ Rasulullah Shallallāhu ‘alaihi wa Sallam pernah bersabda:
         </li>
     </ol>
 </blockquote>
+
+```bash
+nc 10.15.43.32 3404
+
+===== Soal 17 =====
+Difficulty: Hard
+Note: You can exit anytime by typing 'exit'
+
+What is the name of the first suspicious file?
+Format: file.exe
+> Invoice&MSO-Request.doc
+
+What is the name of the second suspicious file?
+Format: file.exe
+> knr.exe
+
+What is the hash of the second suspicious file (knr.exe)?
+Format: sha256
+> 749e161661290e8a2d190b1a66469744127bc25bf46e5d0c6f2e835f4b92db18
+Congratulations! Here is your flag: KOMJAR25{M4ster_4n4lyzer_9kTRAJDBg0k4TphQM6UI7BrYf}
+```
+
+#### • Soal 17.a: What is the name of the first suspicious file?
+#### • Soal 17.b: What is the name of the second suspicious file?
+#### • Soal 17.c: What is the hash of the second suspicious file (knr.exe)?
 
 ### • Soal 18
 <blockquote>
@@ -221,6 +321,41 @@ Rasulullah Shallallāhu ‘alaihi wa Sallam pernah bersabda:
     </ol>
 </blockquote>
 
+```bash
+nc 10.15.43.32 3405
+
+===== Soal 18 =====
+Difficulty: Hard
+Note: You can exit anytime by typing 'exit'
+
+How many files are suspected of containing malware?
+Format: int
+> 2
+
+What is the name of the first malicious file?
+Format: file.exe
+> d0p2nc6ka3f_fixhohlycj4ovqfcy_smchzo_ub83urjpphrwahjwhv_o5c0fvf6.exe
+
+Apa nama file berbahaya yang kedua?
+Format: file.exe
+> oiku9bu68cxqenfmcsos2aek6t07_guuisgxhllixv8dx2eemqddnhyh46l8n_di.exe
+
+What is the hash of the first malicious file?
+Format: sha256
+> 59896ae5f3edcb999243c7bfdc0b17eb7fe28f3a66259d797386ea470c010040
+
+What is the hash of the second malicious file?
+Format: sha256
+> cf99990bee6c378cbf56239b3cc88276eec348d82740f84e9d5c343751f82560
+Congratulations! Here is your flag: KOMJAR25{Y0u_4re_g0dl1ke_LfpxF7WQlyONdAnhyZqyNex5T}
+```
+
+#### • Soal 18.a: How many files are suspected of containing malware?
+#### • Soal 18.b: What is the name of the first malicious file?
+#### • Soal 18.c: Apa nama file berbahaya yang kedua?
+#### • Soal 18.d: What is the hash of the first malicious file?
+#### • Soal 18.e: What is the hash of the second malicious file?
+
 ### • Soal 19
 <blockquote>
     <ol start="19">
@@ -230,6 +365,31 @@ Rasulullah Shallallāhu ‘alaihi wa Sallam pernah bersabda:
         </li>
     </ol>
 </blockquote>
+
+```bash
+nc 10.15.43.32 3406
+
+===== Soal 19 =====
+Difficulty: Hard
+Note: You can exit anytime by typing 'exit'
+
+Who sent the threatening message?
+Format: string (name)
+> Your Life
+
+How much ransom did the attacker demand ($)?
+Format: int
+> 1600
+
+What is the attacker's bitcoin wallet?
+Format: string
+> 1CWHmuF8dHt7HBGx5RKKLgg9QA2GmE3UyL
+Congratulations! Here is your flag: KOMJAR25{Y0u_4re_J4rk0m_G0d_mZTuSO0QZ9AdMjOB4686nU0U1}
+```
+
+#### • Soal 19.a: Who sent the threatening message?
+#### • Soal 19.b: How much ransom did the attacker demand ($)?
+#### • Soal 19.c: What is the attacker's bitcoin wallet?
 
 ### • Soal 20
 <blockquote>
@@ -241,7 +401,31 @@ Rasulullah Shallallāhu ‘alaihi wa Sallam pernah bersabda:
     </ol>
 </blockquote>
 
-Walkthrough
+```bash
+nc 10.15.43.32 3407
+
+===== Soal 20 =====
+Difficulty: Hard
+Note: You can exit anytime by typing 'exit'
+
+What encryption method is used?
+Format: string
+> TLS
+
+What is the name of the malicious file placed by the attacker?
+Format: file.exe
+> invest_20.dll
+
+What is the hash of the file containing the malware?
+Format: sha256
+> 31cf42b2a7c5c558f44cfc67684cc344c17d4946d3a1e0b2cecb8eb58173cb2f
+Congratulations! Here is your flag: KOMJAR25{B3ware_0f_M4lw4re_yau7ElDfafuTufKs0aXlBTA8b}
+```
+
+#### • Soal 20.a: What encryption method is used?
+#### • Soal 20.b: What is the name of the malicious file placed by the attacker?
+#### • Soal 20.c: What is the hash of the file containing the malware?
+
 No. 14
 Statistics > Capture File Properties
 <img width="1624" height="321" alt="Screenshot From 2025-09-30 14-11-52" src="https://github.com/user-attachments/assets/d29f9533-d028-4aea-9be9-b60f35285d74" />
@@ -305,26 +489,7 @@ Accept-Encoding: gzip
  
 username=n1enna&password=y4v4nn4_k3m3nt4r1
 
-===== Soal 14 =====
-Difficulty: Easy
-Note: You can exit anytime by typing 'exit'
 
-How many packets are recorded in the pcapng file?
-Format: int
-> 500358
-
-What are the user that successfully logged in?
-Format: user:pass
-> n1enna:y4v4nn4_k3m3nt4r1
-
-In which stream were the credentials found?
-Format: int
-> 41824
-
-What tools are used for brute force?
-Format: Hydra v1.8.0-dev
-> Fuzz Faster U Fool v2.1.0-dev
-Congratulations! Here is your flag: KOMJAR25{Brut3_F0rc3_LlP4CsiExCnDT7yPEZP3GTJhX}
 
 No. 15
 ===== Soal 15 =====
@@ -794,38 +959,7 @@ tcp.port == 50157
 
 
 
-===== Soal 16 =====
-Difficulty: Hard
-Note: You can exit anytime by typing 'exit'
 
-What credential did the attacker use to log in?
-Format: user:pass
-> ind@psg420.com:{6r_6e#TfT1p                                       
-
-How many files are suspected of containing malware?
-Format: int
-> 5
-
-What is the hash of the first file (q.exe)?
-Format: sha256
-> ca34b0926cdc3242bbfad1c4a0b42cc2750d90db9a272d92cfb6cb7034d2a3bd
-
-What is the hash of the second file (w.exe)?
-Format: sha256
-> 08eb941447078ef2c6ad8d91bb2f52256c09657ecd3d5344023edccf7291e9fc
-
-What is the hash of the third file (e.exe)?
-Format: sha256
-> 32e1b3732cd779af1bf7730d0ec8a7a87a084319f6a0870dc7362a15ddbd3199
-
-What is the hash of the fourth file (r.exe)?
-Format: sha256
-> 4ebd58007ee933a0a8348aee2922904a7110b7fb6a316b1c7fb2c6677e613884
-
-What is the hash of the fifth file (t.exe)?
-Format: sha256
-> 10ce4b79180a2ddd924fdc95951d968191af2ee3b7dfc96dd6a5714dbeae613a
-Congratulations! Here is your flag: KOMJAR25{Y0u_4r3_4_g00d_4nalyz3r_blETB2xtXYXJAS5ghgqZqxg8B}
 
 No. 17
 <img width="1920" height="997" alt="Screenshot From 2025-10-01 07-36-33" src="https://github.com/user-attachments/assets/ceb8cb94-d57d-4700-a358-a304fdb0e044" />
@@ -871,22 +1005,7 @@ sha256sum knr.exe
 Output:
 749e161661290e8a2d190b1a66469744127bc25bf46e5d0c6f2e835f4b92db18
 
-===== Soal 17 =====
-Difficulty: Hard
-Note: You can exit anytime by typing 'exit'
 
-What is the name of the first suspicious file?
-Format: file.exe
-> Invoice&MSO-Request.doc
-
-What is the name of the second suspicious file?
-Format: file.exe
-> knr.exe
-
-What is the hash of the second suspicious file (knr.exe)?
-Format: sha256
-> 749e161661290e8a2d190b1a66469744127bc25bf46e5d0c6f2e835f4b92db18
-Congratulations! Here is your flag: KOMJAR25{M4ster_4n4lyzer_9kTRAJDBg0k4TphQM6UI7BrYf}
 
 
 No. 18
@@ -936,30 +1055,7 @@ Output untuk file:
 
 7932    1096.944375    10.6.26.110    10.6.26.6    SMB    219    NT Create AndX Request, FID: 0x4003, Path: \WINDOWS\	
 
-===== Soal 18 =====
-Difficulty: Hard
-Note: You can exit anytime by typing 'exit'
 
-How many files are suspected of containing malware?
-Format: int
-> 2
-
-What is the name of the first malicious file?
-Format: file.exe
-> d0p2nc6ka3f_fixhohlycj4ovqfcy_smchzo_ub83urjpphrwahjwhv_o5c0fvf6.exe
-
-Apa nama file berbahaya yang kedua?
-Format: file.exe
-> oiku9bu68cxqenfmcsos2aek6t07_guuisgxhllixv8dx2eemqddnhyh46l8n_di.exe
-
-What is the hash of the first malicious file?
-Format: sha256
-> 59896ae5f3edcb999243c7bfdc0b17eb7fe28f3a66259d797386ea470c010040
-
-What is the hash of the second malicious file?
-Format: sha256
-> cf99990bee6c378cbf56239b3cc88276eec348d82740f84e9d5c343751f82560
-Congratulations! Here is your flag: KOMJAR25{Y0u_4re_g0dl1ke_LfpxF7WQlyONdAnhyZqyNex5T}
 
 
 No. 19
@@ -978,22 +1074,7 @@ Untuk mengetahui konten dari email yang dikirim tanpa terbagi-bagi menjadi paket
 
 Seluruh isi dari email bisa dibaca.
 
-===== Soal 19 =====
-Difficulty: Hard
-Note: You can exit anytime by typing 'exit'
 
-Who sent the threatening message?
-Format: string (name)
-> Your Life
-
-How much ransom did the attacker demand ($)?
-Format: int
-> 1600
-
-What is the attacker's bitcoin wallet?
-Format: string
-> 1CWHmuF8dHt7HBGx5RKKLgg9QA2GmE3UyL
-Congratulations! Here is your flag: KOMJAR25{Y0u_4re_J4rk0m_G0d_mZTuSO0QZ9AdMjOB4686nU0U1}
 
 
 
@@ -1052,22 +1133,7 @@ Gunakan command sha256sum untuk mengetahui hash dari invest_20.dll.
 Output:
 31cf42b2a7c5c558f44cfc67684cc344c17d4946d3a1e0b2cecb8eb58173cb2f
 
-===== Soal 20 =====
-Difficulty: Hard
-Note: You can exit anytime by typing 'exit'
 
-What encryption method is used?
-Format: string
-> TLS
-
-What is the name of the malicious file placed by the attacker?
-Format: file.exe
-> invest_20.dll
-
-What is the hash of the file containing the malware?
-Format: sha256
-> 31cf42b2a7c5c558f44cfc67684cc344c17d4946d3a1e0b2cecb8eb58173cb2f
-Congratulations! Here is your flag: KOMJAR25{B3ware_0f_M4lw4re_yau7ElDfafuTufKs0aXlBTA8b}
 
 
 
