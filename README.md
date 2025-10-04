@@ -61,6 +61,7 @@ Rasulullah Shallallāhu ‘alaihi wa Sallam pernah bersabda:
         </li>
     </ol>
 </blockquote>
+
 Melakukan   
 ```bash
 ping google.com -c 3
@@ -77,6 +78,7 @@ ke Eru
         </li>
     </ol>
 </blockquote>
+
 Melakukan   
 ```bash
 ping [IP Ainur] -c 3   
