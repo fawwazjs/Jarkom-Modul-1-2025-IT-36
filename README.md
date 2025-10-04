@@ -443,13 +443,212 @@ Format: sha256
 Congratulations! Here is your flag: KOMJAR25{Y0u_4r3_4_g00d_4nalyz3r_blETB2xtXYXJAS5ghgqZqxg8B}
 ```
 
+No. 16
+
+FTP = File Transfer Protocol
+
+229    17.282471    216.55.163.106    10.6.13.102    FTP    101    Response: 331 User ind@psg420.com OK. Password required
+
+231    17.282954    10.6.13.102    216.55.163.106    FTP    73    Request: PASS {6r_6e#TfT1p
+
+What credential did the attacker use to log in?
+Format: user:pass
+> ind@psg420.com:{6r_6e#TfT1p
+
+Pada HTTP tidak ada indikasi seperti GET halaman login. Mencoba protokol lain, seperti FTP.
+
+How many files are suspected of containing malware?
+Format: int
+> 5
+
+q.exe
+w.exe
+e.exe
+r.exe
+t.exe
+
+
+Jumlah IP pada PCAP ada 5. IP 10.6.13.102 merupakan IP pertama yang meminta request SYN, Jumlah Bytes yang dikirim cukup besar, Merupakan IP private dan bukan IP eksternal dengan geolokasi. Potensi Malware.
+Jadi filter pertama:
+ip.src = 10.6.13.102
+
+
+
+FTP menjadi protokol dengan persentase Bytes terbesar pada PCAP. Memiliki potensi membawa malware. FTP didesain untuk mentransfer file.
+
+Filter ke 2:
+ftp
+
+<img width="1920" height="997" alt="Screenshot From 2025-10-01 02-27-51" src="https://github.com/user-attachments/assets/4f1fd1d3-32d0-4b52-a89b-1b48a5194a18" />
+
+
+Secara langsung dapat terlihat dua frame yang menarik, yaitu frame 227 dan frame 231.
+Sehingga:
+USER ind@psg420.com
+PASS PASS {6r_6e#TfT1p
+
+<img width="1920" height="997" alt="Screenshot From 2025-10-01 02-35-15" src="https://github.com/user-attachments/assets/c683932a-50c3-4300-8c87-2b05883da87f" />
+
 #### • Soal 16.a: What credential did the attacker use to log in?
+
+<p align="justify">
+&emsp; Sebelum dapat mengetahui kredensial yang digunakan attacker (Melkor) untuk login, maka kita perlu terlebih dahulu mengetahui secara definitif protokol apa yang digunakan attacker (Melkor) untuk mengirim file malware. Hal ini dapat dilakukan dengan beralih ke menu <code>Statistics > Protocol Hierarchy</code>.
+</p>
+
+<p align="center">
+	<img width="80%" height="80%" alt="ab" src="https://github.com/user-attachments/assets/fae7acaf-d194-4de1-95f2-638edab03e5a">
+</p>
+
+<p align="justify">
+&emsp; Berdasarkan screenshot di atas, dapat disimpulkan bahwasannya kemungkinan protokol yang digunakan untuk mengirim file malware adalah <b>FTP</b>.
+</p>
+
+<p align="justify">
+&emsp; Selain melihat protokol yang digunakan, kita juga perlu mengetahui secara definitif IP address mana yang berinteraksi dengan file malware tersebut dengan cara beralih ke menu <code>Statistics > Conversations</code>.
+</p>
+
+<p align="center">
+	<img width="80%" height="80%" alt="ac" src="https://github.com/user-attachments/assets/045c20d2-8a68-4d50-934e-4d2696cdf22d">
+</p>
+
+<p align="justify">
+&emsp; Berdasarkan screenshot di atas, dapat disimpulkan bahwasannya kemungkinan IP address yang berinteraksi dengan file malware dan bertindak sebagai client adalah IP address <b>10.6.13.102</b> dikarenakan IP address tersebut merupakan <b>IP privat</b>, IP address pertama yang <b>meminta request SYN</b> terhadap server, teserta jumlah bytes dari paket yang dia dapat dari IP address <b>216.55.163.106</b> yang abnormal dibandingkan dengan percakapannya dengan IP address lain. Maka, keseluruhan display filter yang digunakan adalah <code>ftp && ip.src == 10.6.13.102 && ip.dst == 216.55.163.106</code>
+</p>
+
+<p align="center">
+	<img width="80%" height="80%" alt="ad" src="https://github.com/user-attachments/assets/58cfa04f-deb7-4cd3-a51f-a24a4fbe3e14">
+</p>
+
+<p align="justify">
+&emsp; Berdasarkan screenshot di atas, dapat disimpulkan bahwasannya username yang digunakan untuk login adalah <b>ind@psg420.com</b> serta password yang berkaitan adalah <b>{6r_6e#TfT1p</b>.
+</p>
+
 #### • Soal 16.b: How many files are suspected of containing malware?
+
+<p align="justify">
+&emsp; Untuk mendapatkan jumlah file yang memuat malware, maka kita dapat menambahkan display filter <code>&& ftp.request.command == "RETR"</code> pada filter yang sudah ada. Hal ini dikarenakan flag <code>RETR</code> umumnya digunakan untuk melakukan request suatu file kepada server pada protokol FTP.
+
+<p align="center">
+	<img width="80%" height="80%" alt="ae" src="https://github.com/user-attachments/assets/bbc3efc0-1e69-4d74-ac3f-036f0f70b3f1">
+</p>
+
+<p align="justify">
+&emsp; Berdasarkan screenshot di atas, dapat disimpulkan bahwasannya terdapat <b>lima file</b> yang kemungkinan memuat malware, yaitu file <code>q.exe</code>, <code>w.exe</code>, <code>e.exe</code>, <code>r.exe</code>, dan <code>t.exe</code>.
+</p>
+
 #### • Soal 16.c: What is the hash of the first file (q.exe)?
+
+<p align="justify">
+&emsp; Sebelum kita dapat mengetahui hash dari file malware pertama, maka terlebih dahulu kita perlu menyimpan file tersebut pada penyimpanan lokal di komputer kita dengan cara:
+</p>
+
+<ol>
+	<li>
+		<p align="justify">
+			&emsp; Membuka detail dari paket dengan info <code>SIZE q.exe</code> dengan cara menggunakan display filter <code>ftp && ip.src == 10.6.13.102 && ip.dst == 216.55.163.106 && _ws.col.info contains "SIZE q.exe"</code>.
+		</p>
+		<p align="center">
+			<img width="80%" height="80%" alt="af" src="https://github.com/user-attachments/assets/55e1042c-5122-4c66-8865-6e7503d391f6">
+		</p>
+	</li>
+	<li>
+		<p align="justify">
+			&emsp; Pindah ke frame yang tertera pada <code>File Transfer Protocol (FTP) > Setup frame</code> dengan cara beralih ke menu <code>Go > Go to Packet... > 241</code>. Pada detail paket, temukan port yang digunakan untuk mengirim file <code>q.exe</code> dengan cara melihat pada <code>File Transfer Protocol (FTP) > 227 Entering Passive Mode (216,55,163,106,199,145)\r\n > Passive port</code>.
+		</p>
+		<p align="center">
+			<img width="80%" height="80%" alt="ag" src="https://github.com/user-attachments/assets/32887a2e-034b-49ac-868f-16f7aa4db274">
+		</p>
+	</li>
+	<li>
+		<p align="justify">
+			&emsp; Gunakan port yang telah ditemukan pada detail paket <code>Setup Frame</code> tersebut sebagai display filter. Yaitu <code>tcp.port == 51089</code>.
+		</p>
+		<p align="center">
+			<img width="80%" height="80%" alt="ah" src="https://github.com/user-attachments/assets/6f19fcb4-2b44-4c3b-ac5b-f3c7f1f1dcd2">
+		</p>
+	</li>
+	<li>
+		<p align="justify">
+			&emsp; Pilih salah satu paket dan lakukan <code>Follow > TCP Stream > Show as Raw</code>. Di mana angka-angka panjang yang tertera pada menu tersebut merupakan <b>isi dari file</b> <code>q.exe</code>, hanya saja isinya dibagi-bagi menjadi paket yang berbeda saat proses transmisi namun tetap satu stream. Setelah itu, pilih opsi <code>Save as... > q.exe</code> untuk menyimpan isi file tersebut pada penyimpanan lokal di komputer.
+		</p>
+		<p align="center">
+			<img width="80%" height="80%" alt="ai" src="https://github.com/user-attachments/assets/8aef956e-9bec-4fa4-b1e3-a4dfacf272de">
+		</p>
+	</li>
+</ol>
+
+<p align="justify">
+Hanya setelah itu baru kita dapat mendapatkan hash dari file <code>q.exe</code> dengan <b>membuka terminal</b> dan menjalankan command <code>sha256sum [alamat file]</code>.
+</p>
+
+```sh
+sha256sum /home/fedora/Downloads/q.exe 
+ca34b0926cdc3242bbfad1c4a0b42cc2750d90db9a272d92cfb6cb7034d2a3bd  /home/fedora/Downloads/q.exe
+```
+
+<p align="justify">
+&emsp; Setelah menjalankan command <code>sha256sum</code> pada file <code>q.exe</code>, dapat disimpulkan bahwasannya hash dari file pertama dengan format SHA256 adalah <b>ca34b0926cdc3242bbfad1c4a0b42cc2750d90db9a272d92cfb6cb7034d2a3bd</b>.
+</p>
+
 #### • Soal 16.d: What is the hash of the second file (w.exe)?
+
+<p align="justify">
+&emsp; Sebelum kita dapat mengetahui hash dari file malware kedua, maka terlebih dahulu kita perlu menyimpan file tersebut pada penyimpanan lokal di komputer kita dengan metode yang sama untuk menyimpan file <code>q.exe</code>. Hanya setelah itu baru kita dapat mendapatkan hash dari file <code>w.exe</code> dengan <b>membuka terminal</b> dan menjalankan command <code>sha256sum [alamat file]</code>.
+</p>
+
+```sh
+sha256sum /home/fedora/Downloads/w.exe
+08eb941447078ef2c6ad8d91bb2f52256c09657ecd3d5344023edccf7291e9fc  /home/fedora/Downloads/w.exe
+```
+
+<p align="justify">
+&emsp; Setelah menjalankan command <code>sha256sum</code> pada file <code>w.exe</code>, dapat disimpulkan bahwasannya hash dari file kedua dengan format SHA256 adalah <b>08eb941447078ef2c6ad8d91bb2f52256c09657ecd3d5344023edccf7291e9fc</b>.
+</p>
+
 #### • Soal 16.e: What is the hash of the third file (e.exe)?
+
+<p align="justify">
+&emsp; Sebelum kita dapat mengetahui hash dari file malware ketiga, maka terlebih dahulu kita perlu menyimpan file tersebut pada penyimpanan lokal di komputer kita dengan metode yang sama untuk menyimpan file <code>q.exe</code>. Hanya setelah itu baru kita dapat mendapatkan hash dari file <code>e.exe</code> dengan <b>membuka terminal</b> dan menjalankan command <code>sha256sum [alamat file]</code>.
+</p>
+
+```sh
+sha256sum /home/fedora/Downloads/e.exe
+32e1b3732cd779af1bf7730d0ec8a7a87a084319f6a0870dc7362a15ddbd3199  /home/fedora/Downloads/e.exe
+```
+
+<p align="justify">
+&emsp; Setelah menjalankan command <code>sha256sum</code> pada file <code>e.exe</code>, dapat disimpulkan bahwasannya hash dari file ketiga dengan format SHA256 adalah <b>32e1b3732cd779af1bf7730d0ec8a7a87a084319f6a0870dc7362a15ddbd3199</b>.
+</p>
+
 #### • Soal 16.f: What is the hash of the fourth file (r.exe)?
+
+<p align="justify">
+&emsp; Sebelum kita dapat mengetahui hash dari file malware keempat, maka terlebih dahulu kita perlu menyimpan file tersebut pada penyimpanan lokal di komputer kita dengan metode yang sama untuk menyimpan file <code>q.exe</code>. Hanya setelah itu baru kita dapat mendapatkan hash dari file <code>r.exe</code> dengan <b>membuka terminal</b> dan menjalankan command <code>sha256sum [alamat file]</code>.
+</p>
+
+```sh
+sha256sum /home/fedora/Downloads/r.exe
+4ebd58007ee933a0a8348aee2922904a7110b7fb6a316b1c7fb2c6677e613884  /home/fedora/Downloads/r.exe
+```
+
+<p align="justify">
+&emsp; Setelah menjalankan command <code>sha256sum</code> pada file <code>r.exe</code>, dapat disimpulkan bahwasannya hash dari file keempat dengan format SHA256 adalah <b>4ebd58007ee933a0a8348aee2922904a7110b7fb6a316b1c7fb2c6677e613884</b>.
+</p>
+
 #### • Soal 16.g: What is the hash of the fifth file (t.exe)?
+
+<p align="justify">
+&emsp; Sebelum kita dapat mengetahui hash dari file malware kelima, maka terlebih dahulu kita perlu menyimpan file tersebut pada penyimpanan lokal di komputer kita dengan metode yang sama untuk menyimpan file <code>q.exe</code>. Hanya setelah itu baru kita dapat mendapatkan hash dari file <code>t.exe</code> dengan <b>membuka terminal</b> dan menjalankan command <code>sha256sum [alamat file]</code>.
+</p>
+
+```sh
+sha256sum /home/fedora/Downloads/t.exe
+10ce4b79180a2ddd924fdc95951d968191af2ee3b7dfc96dd6a5714dbeae613a  /home/fedora/Downloads/t.exe
+```
+
+<p align="justify">
+&emsp; Setelah menjalankan command <code>sha256sum</code> pada file <code>t.exe</code>, dapat disimpulkan bahwasannya hash dari file kelima dengan format SHA256 adalah <b>10ce4b79180a2ddd924fdc95951d968191af2ee3b7dfc96dd6a5714dbeae613a</b>.
+</p>
 
 ### • Soal 17
 
@@ -483,47 +682,10 @@ Format: sha256
 Congratulations! Here is your flag: KOMJAR25{M4ster_4n4lyzer_9kTRAJDBg0k4TphQM6UI7BrYf}
 ```
 
-No. 17
-
-
-Statistics > Conversations
-Traffic terbanyak adalah antara IP 10.6.27.102 dan 107.180.50.162. Sehingga kemungkinan besar file malware dikirim antara keduanya. Filter:
-ip.addr == 10.6.27.102 && ip.addr == 107.180.50.162
-
-
-Volume traffic kebanyakan dari http. Kemungkinan besar mengirim malware.
-
-Filter:
-http
-
-Semuanya:
-http && ip.addr == 10.6.27.102 && ip.addr == 107.180.50.162
-<img width="1920" height="997" alt="Screenshot From 2025-10-01 07-47-33" src="https://github.com/user-attachments/assets/0c1a43cc-abcf-486c-9063-9fd4b80e0c62" />
-
-
-Urutan file pertama yang muncul berdasarkan GET (Server 107.180.50.162 (IP eksternal) mengirimkan file berdasarkan request client IP 10.6.27.102 (privat)):
-71    29.202755    10.6.27.102    107.180.50.162    HTTP    343    GET /Documents/Invoice&MSO-Request.doc HTTP/1.1
- 
-Urutan file kedua yang muncul berdasarkan GET (Server 107.180.50.162 (IP eksternal) mengirimkan file berdasarkan request client IP 10.6.27.102 (privat)):
-356    38.470797    10.6.27.102    107.180.50.162    HTTP    361    GET /knr.exe HTTP/1.1 
-
-File -> Export Objects -> HTTP -> knr.exe -> Save
-
-<img width="1920" height="997" alt="Screenshot From 2025-10-01 07-55-36" src="https://github.com/user-attachments/assets/01218570-1ae9-4363-b702-f626c2aae15e" />
-
-
-sha256sum knr.exe
-
-<img width="1920" height="997" alt="Screenshot From 2025-10-01 07-57-05" src="https://github.com/user-attachments/assets/8fcaf938-4bc2-4aa4-a805-2ea501044201" />
-
-
-Output:
-749e161661290e8a2d190b1a66469744127bc25bf46e5d0c6f2e835f4b92db18
-
 #### • Soal 17.a: What is the name of the first suspicious file?
 
 <p align="justify">
-&emsp; Sebelum dapat mengetahui nama file yang memuat malware, kita perlu terlebih dahulu mengetahui secara definitif protokol apa yang digunakan attacker (Melkor) untuk mengirim file malware. Hal ini dapat dilakukan dengan beralih ke menu <code>Statistics > Protocol Hierarchy</code>.
+&emsp; Sebelum dapat mengetahui nama file yang memuat malware, maka kita perlu terlebih dahulu mengetahui secara definitif protokol apa yang digunakan attacker (Melkor) untuk mengirim file malware. Hal ini dapat dilakukan dengan beralih ke menu <code>Statistics > Protocol Hierarchy</code>.
 </p>
 
 <p align="center">
@@ -895,7 +1057,7 @@ Sehingga tampilan paket-paket yang terenkripsi TLS akan berubah menjadi:
 </p>
 
 <p align="justify">
-&emsp; Berdasarkan screenshot di atas, terdapat beberapa paket-paket yang pada awalnya tertera menggunakan protokol TLS yang terenkripsi berubah menjadi menunjukkan protokol <b>HTTP</b> yang dapat dibaca. Sehingga untuk mencari file, kita dapat menggunakan display filter yaitu <code>http && http.request.method == "GET"</code>, di mana GET umumnya digunakan untuk melakukan request suatu file kepada server.
+&emsp; Berdasarkan screenshot di atas, terdapat beberapa paket-paket yang pada awalnya tertera menggunakan protokol TLS yang terenkripsi berubah menjadi menunjukkan protokol <b>HTTP</b> yang dapat dibaca. Sehingga untuk mencari file, kita dapat menggunakan display filter yaitu <code>http && http.request.method == "GET"</code>, di mana <code>GET</code> umumnya digunakan untuk melakukan request suatu file kepada server pada protokol HTTP.
 </p>
 
 <p align="center">
@@ -1206,53 +1368,7 @@ Ada sama dengan di akhir -> Base64. Decode:
 Output:
 Plz_pr0v1de_y0ur_us3rn4me_4nd_p4ssw0rd
 
-No. 16
 
-FTP = File Transfer Protocol
-
-229    17.282471    216.55.163.106    10.6.13.102    FTP    101    Response: 331 User ind@psg420.com OK. Password required
-
-231    17.282954    10.6.13.102    216.55.163.106    FTP    73    Request: PASS {6r_6e#TfT1p
-
-What credential did the attacker use to log in?
-Format: user:pass
-> ind@psg420.com:{6r_6e#TfT1p
-
-Pada HTTP tidak ada indikasi seperti GET halaman login. Mencoba protokol lain, seperti FTP.
-
-How many files are suspected of containing malware?
-Format: int
-> 5
-
-q.exe
-w.exe
-e.exe
-r.exe
-t.exe
-
-<img width="1920" height="997" alt="Screenshot From 2025-09-30 19-53-56" src="https://github.com/user-attachments/assets/6c0eb9d1-c86c-4485-91ed-eb581fa5836b" />
-
-Jumlah IP pada PCAP ada 5. IP 10.6.13.102 merupakan IP pertama yang meminta request SYN, Jumlah Bytes yang dikirim cukup besar, Merupakan IP private dan bukan IP eksternal dengan geolokasi. Potensi Malware.
-Jadi filter pertama:
-ip.src = 10.6.13.102
-
-<img width="1920" height="997" alt="Screenshot From 2025-09-30 19-57-44" src="https://github.com/user-attachments/assets/fae7acaf-d194-4de1-95f2-638edab03e5a" />
-
-
-FTP menjadi protokol dengan persentase Bytes terbesar pada PCAP. Memiliki potensi membawa malware. FTP didesain untuk mentransfer file.
-
-Filter ke 2:
-ftp
-
-<img width="1920" height="997" alt="Screenshot From 2025-10-01 02-27-51" src="https://github.com/user-attachments/assets/4f1fd1d3-32d0-4b52-a89b-1b48a5194a18" />
-
-
-Secara langsung dapat terlihat dua frame yang menarik, yaitu frame 227 dan frame 231.
-Sehingga:
-USER ind@psg420.com
-PASS PASS {6r_6e#TfT1p
-
-<img width="1920" height="997" alt="Screenshot From 2025-10-01 02-35-15" src="https://github.com/user-attachments/assets/c683932a-50c3-4300-8c87-2b05883da87f" />
 
 
 Dua command FTP yang menarik perhatian:
