@@ -512,10 +512,97 @@ Congratulations! Here is your flag: KOMJAR25{Y0u_4re_g0dl1ke_LfpxF7WQlyONdAnhyZq
 ```
 
 #### • Soal 18.a: How many files are suspected of containing malware?
+
+<p align="justify">
+&emsp; Sebelum dapat mengetahui jumlah file yang memuat malware, kita perlu terlebih dahulu mengetahui secara definitif protokol apa yang digunakan attacker (Melkor) untuk mengirim file malware. Hal ini dapat dilakukan dengan beralih ke menu <code>Statistics > Protocol Hierarchy</code>.
+</p>
+
+<p align="center">
+	<img width="80%" height="80%" alt="n" src="https://github.com/user-attachments/assets/f3a4654f-cee5-4f06-970f-2791aac087d3">
+</p>
+
+<p align="justify">
+&emsp; Berdasarkan screenshot di atas, bahwasannya terdapat tiga kemungkinan untuk protokol yang digunakan untuk mengirim file malware, yaitu TLS, HTTP, dan SMB. Namun, kita dapat menentukan protokol mana yang sebenarnya digunakan dengan mempertimbangkan hal-hal berikut:
+	<ol>
+		<li>Pada soal sebelumnya, Melkor telah menggunakan protokol HTTP untuk mengirim file malware. Serta, jika melihat pernyataan pada soal 18, di mana:
+		<blockquote>
+			Pada saat berpikir ia akhirnya memutuskan untuk membuat rencana jahat lainnya dengan meletakkan file berbahaya lagi tetapi dengan <b>metode yang berbeda</b>.
+		</blockquote>
+		Sehingga kemungkinan besar, Melkor tidak menggunakan HTTP untuk serangan kali ini.
+		</li>
+		<li>
+			Spesifik untuk soal ini, kita tidak disediakan file key log yang krusial untuk dapat mendekripsi dan membaca data yang terkirim melalui protokol TLS. Sehingga kemungkinan besar, Melkor tidak menggunakan TLS untuk serangan kali ini (Sebenarnya bisa saja, namun kalau masalah memakai protokol TLS tetapi tidak ada file key log-nya itu beda cerita).
+		</li>
+	</ol>
+Maka dari itu, kemungkinan besar Melkor menggunakan protokol <b>SMB</b> untuk serangan kali ini.
+</p>
+
+<p align="justify">
+&emsp; Setelah mengetahui protokol apa yang digunakan, maka selanjutnya kita dapat melihat file-file apa saja yang dikirimkan melalui protokol SMB dengan cara beralih ke menu <code>File > Export Objects > SMB...</code>.
+</p>
+
+<p align="center">
+	<img width="80%" height="80%" alt="o" src="https://github.com/user-attachments/assets/005bd4be-9b37-4fcb-8f91-0070b776268f">
+</p>
+
+<p align="justify">
+&emsp; Berdasarkan screenshot di atas, dapat disimpulkan bahwasannya terdapat <b>dua file</b> yang membawa malware pada file PCAP ini, yaitu <code>\WINDOWS\d0p2nc6ka3f_..._o5c0fvf6.exe</code> dan <code>\WINDOWS\oiku9bu68cxqenfmcsos...hyh46l8n_di.exe</code> dengan mempertimbangkan beberapa hal ini:
+	<ol>
+		<li>Kedua file memiliki ukuran yang abnormal dibandingkan dengan file yang lain, di mana kedua file memiliki ukuran pada rentang <b>kB</b>, sedangkan file lain hanya berada di kisaran <b>puluhan byte</b> atau bahkan <b>nol</b>.</li>
+		<li>Kedua file memiliki ekstensi berupa <code>.exe</code> di mana ekstensi executable rentan dianggap sebagai pembawa malware.</li>
+		<li>Kedua file memiliki <code>Content Type</code> berupa <code>FILE</code></li>
+		<li>Hostname dari kedua file merupakan IP address privat dan bukan IP address eksternal seperti yang tertera pada file <code>\cliffstone.net\Policies\{31B2F340-016D-11D2-945F-00C04FB984F9}\gpt.ini</code> dan <code>\cliffstone.net\Policies\{31B2F340-016D-11D2-945F-00C04FB984F9}\gpt.ini</code></li>
+	</ol>
+</p>
+
 #### • Soal 18.b: What is the name of the first malicious file?
+
+<p align="center">
+	<img width="80%" height="80%" alt="p" src="https://github.com/user-attachments/assets/f97fb5ab-dd1d-4ea5-98ec-65c187e7dba3">
+</p>
+
+<p align="justify">
+&emsp; Berdasarkan hasil temuan pada 14.a dan mengurutkannya berdasarkan frame di mana file tersebut berada, maka dapat disimpulkan bahwasannya file malware pertama adalah <code>\WINDOWS\d0p2nc6ka3f_fixhohlycj4ovqfcy_smchzo_ub83urjpphrwahjwhv_o5c0fvf6.exe</code> yang berada pada frame <b>7058</b>.
+</p>
+
 #### • Soal 18.c: Apa nama file berbahaya yang kedua?
+
+<p align="center">
+	<img width="80%" height="80%" alt="q" src="https://github.com/user-attachments/assets/b3483335-b5fd-4590-82e1-61ee090a3fc1">
+</p>
+
+<p align="justify">
+&emsp; Berdasarkan hasil temuan pada 14.a dan mengurutkannya berdasarkan frame di mana file tersebut berada, maka dapat disimpulkan bahwasannya file malware kedua adalah <code>\WINDOWS\oiku9bu68cxqenfmcsos2aek6t07_guuisgxhllixv8dx2eemqddnhyh46l8n_di.exe</code> yang berada pada frame <b>7936</b>.
+</p>
+
 #### • Soal 18.d: What is the hash of the first malicious file?
+
+<p align="justify">
+&emsp; Sebelum kita dapat mengetahui hash dari kedua file malware, maka terlebih dahulu kita perlu menyimpan kedua file pada penyimpanan lokal di komputer kita dengan memilih opsi <code>Save</code> pada menu <code>File > Export Objects > SMB...</code> yang sama. Hanya setelah itu baru kita dapat mendapatkan hash dari kedua file dengan <b>membuka terminal</b> dan menjalankan command <code>sha256sum [alamat file]</code>.
+</p>
+
+```sh
+sha256sum /home/fedora/Downloads/%5cWINDOWS%5cd0p2nc6ka3f_fixhohlycj4ovqfcy_smchzo_ub83urjpphrwahjwhv_o5c0fvf6.exe 
+59896ae5f3edcb999243c7bfdc0b17eb7fe28f3a66259d797386ea470c010040  /home/fedora/Downloads/%5cWINDOWS%5cd0p2nc6ka3f_fixhohlycj4ovqfcy_smchzo_ub83urjpphrwahjwhv_o5c0fvf6.exe
+```
+
+<p align="justify">
+&emsp; Setelah menjalankan command <code>sha256sum</code> pada file <code>\WINDOWS\d0p2nc6ka3f_..._o5c0fvf6.exe</code>, dapat disimpulkan bahwasannya hash dari file pertama dengan format SHA256 adalah <b>59896ae5f3edcb999243c7bfdc0b17eb7fe28f3a66259d797386ea470c010040</b>.
+
 #### • Soal 18.e: What is the hash of the second malicious file?
+
+<p align="justify">
+&emsp; Sebelum kita dapat mengetahui hash dari kedua file malware, maka terlebih dahulu kita perlu menyimpan kedua file pada penyimpanan lokal di komputer kita dengan memilih opsi <code>Save</code> pada menu <code>File > Export Objects > SMB...</code> yang sama. Hanya setelah itu baru kita dapat mendapatkan hash dari kedua file dengan <b>membuka terminal</b> dan menjalankan command <code>sha256sum [alamat file]</code>.
+</p>
+
+```sh
+sha256sum /home/fedora/Downloads/%5cWINDOWS%5coiku9bu68cxqenfmcsos2aek6t07_guuisgxhllixv8dx2eemqddnhyh46l8n_di.exe 
+cf99990bee6c378cbf56239b3cc88276eec348d82740f84e9d5c343751f82560  /home/fedora/Downloads/%5cWINDOWS%5coiku9bu68cxqenfmcsos2aek6t07_guuisgxhllixv8dx2eemqddnhyh46l8n_di.exe
+```
+
+<p align="justify">
+&emsp; Setelah menjalankan command <code>sha256sum</code> pada file <code>\WINDOWS\oiku9bu68cxqenfmcsos...hyh46l8n_di.exe</code>, dapat disimpulkan bahwasannya hash dari file kedua dengan format SHA256 adalah <b>cf99990bee6c378cbf56239b3cc88276eec348d82740f84e9d5c343751f82560</b>.
+</p>
 
 ### • Soal 19
 <blockquote>
