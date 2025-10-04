@@ -114,6 +114,8 @@ ke masing-masing Ainur (Melkor, Manwe, Varda, Ulmo) dan masing-masing Ainur mela
     </ol>
 </blockquote>
 
+Melakukan edit configurasi network pada masing2 node
+
 <img width="1920" height="1080" alt="Image" src="https://github.com/user-attachments/assets/4f54fba4-6ced-42ec-bbcc-bb049f9343b4" />
 
 <img width="1920" height="1080" alt="Image" src="https://github.com/user-attachments/assets/8b597da8-fb5a-4b51-b323-2f89937b1356" />
@@ -140,6 +142,13 @@ ke masing-masing Ainur (Melkor, Manwe, Varda, Ulmo) dan masing-masing Ainur mela
 
 <img width="1920" height="1080" alt="Image" src="https://github.com/user-attachments/assets/ae23ec34-9daf-49b3-835d-5c14904056c9" />
 
+Lalu lakukan penambahan kode pada masing node.
+Di terminal, ketik
+```bash
+nano /root/.bashrc
+```
+<img width="1920" height="1080" alt="Image" src="https://github.com/user-attachments/assets/aea1e767-01f5-4651-abfc-27f3a6f54650" />
+tambahkan di bagian bawah bertanda # seperti gambar
 
 ### • Soal 6
 <blockquote>
