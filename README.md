@@ -50,6 +50,7 @@ Rasulullah Shallallāhu ‘alaihi wa Sallam pernah bersabda:
     </li>
   </ol>
 </blockquote>
+<img width="1920" height="1080" alt="Image" src="https://github.com/user-attachments/assets/1bae475a-4649-471d-844a-324b700c1b92" />
 
 ### • Soal 2
 <blockquote>
@@ -60,6 +61,8 @@ Rasulullah Shallallāhu ‘alaihi wa Sallam pernah bersabda:
         </li>
     </ol>
 </blockquote>
+Melakukan ```ping  google.com -c 3``` ke Eru
+<img width="1920" height="1080" alt="Image" src="https://github.com/user-attachments/assets/65761b8f-dd93-44e6-b4c6-0dc9760fbeee" />
 
 ### • Soal 3
 <blockquote>
@@ -70,6 +73,8 @@ Rasulullah Shallallāhu ‘alaihi wa Sallam pernah bersabda:
         </li>
     </ol>
 </blockquote>
+Melakukan ```ping [IP Ainur] -c 3``` ke masing-masing Ainur (Melkor, Manwe, Varda, Ulmo) dan masing-masing Ainur melakukan ping IP dengan Ainur lainnya.
+<img width="1920" height="1080" alt="Image" src="https://github.com/user-attachments/assets/fc8952e9-4e99-40eb-9452-0dfc7362a355" />
 
 ### • Soal 4
 <blockquote>
