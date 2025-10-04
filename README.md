@@ -207,7 +207,65 @@ Congratulations! Here is your flag: KOMJAR25{Brut3_F0rc3_LlP4CsiExCnDT7yPEZP3GTJ
 ```
 
 #### • Soal 14.a: How many packets are recorded in the pcapng file?
+
+<p align="justify">
+&emsp; Untuk mengetahui jumlah paket yang ditangkap dari suatu file PCAP, maka kita dapat melihatnya dengan beralih ke menu <code>Statistics > Capture File Properties</code>.
+</p>
+
+<p align="center">
+	<img src="https://github.com/user-attachments/assets/d29f9533-d028-4aea-9be9-b60f35285d74" alt="a" width="80%" height="80%">  
+</p>
+
+<p align="justify">
+&emsp; Berdasarkan screenshot di atas, dapat disimpulkan bahwasannya terdapat <b>500358</b> paket yang tertangkap pada file PCAP <code>shortbf.pcapng</code>.
+</p>
+
 #### • Soal 14.b: What are the user that successfully logged in?
+
+<p align="justify">
+&emsp; Sebelum kita dapat mengetahui user mana yang berhasil login, maka kita perlu terlebih dahulu mengetahui protokol apa yang digunakan untuk mengirim data user tersebut pada jaringan. Hal ini dapat dilakukan dengan beralih ke menu <code>Statistics > Protocol Hierarchy</code>.
+</p>
+
+<p align="center">
+	<img width="80%" height="80%" alt="b" src="https://github.com/user-attachments/assets/76d06e74-2efb-4311-991d-3b5e2ebd4d78">
+</p>
+
+<p align="justify">
+&emsp; Berdasarkan screenshot di atas, dapat disimpulkan bahwasannya mayoritas paket yang ditangkap pada file PCAP menggunakan protokol <b>HTTP</b>.
+</p>
+
+<p align="justify">
+&emsp; Selain itu, dalam proses request untuk login, maka server akan mengembalikan respon berdasarkan valid atau tidaknya kredensial yang diberikan selama proses login dalam bentuk suatu paket. Kita bisa melihat paket dengan kriteria tersebut dengan menggunakan display filter yaitu <code>http.response</code>.
+</p>
+
+<p align="center">
+	<img width="80%" height="80%" alt="c" src="https://github.com/user-attachments/assets/fb06c33a-737a-4c21-a10c-b4a4a980285b">
+</p>
+
+<p align="justify">
+&emsp; Berdasarkan screenshot di atas, dengan memperhatikan detail dari mayoritas paket yang ditampilkan, khususnya pada bagian <b>Line-based text data</b>, server akan merespon dengan <b>Invalid credentials</b>. Hal ini menandakan bahwasannya tidak semua percobaan login yang dilakukan oleh client berhasil.
+</p>
+
+<p align="justify">
+&emsp; Maka dari itu, untuk mencari paket di mana client berhasil masuk, kita dapat menambahkan display filter berupa <code>!data-text-lines contains "Invalid credentials"</code>. Sehingga secara keseluruhan, display filter yang digunakan adalah <code>http.response && !data-text-lines contains "Invalid credentials"</code>.
+</p>
+
+<p align="center">
+	<img width="80%" height="80%" alt="d" src="https://github.com/user-attachments/assets/c05df4bd-cb8a-464a-884f-67f5128efb0d">
+</p>
+
+<p align="justify">
+&emsp; Berdasarkan screenshot di atas, dapat disimpulkan bahwasannya paket pada frame <b>50320</b> menunjukkan keberhasilan login yang dilakukan oleh client.
+</p>
+
+<p align="justify">
+&emsp; Sehingga, untuk mengetahui secara definitif data terkait username dan password yang digunakan untuk login, kita bisa beralih ke paket request yang direspon oleh frame 50320, yaitu paket pada frame <b>500315</b> dengan cara menggunakan menu <code>Go > Go to Packet... > 50315</code>.
+</p>
+
+<p align="center">
+	<img width="80%" height="80%" alt="e" src="https://github.com/user-attachments/assets/6abc8840-599d-4dc4-a00f-1373eaea0491">
+</p>
+
 #### • Soal 14.c: In which stream were the credentials found?
 #### • Soal 14.d: What tools are used for brute force?
 
@@ -427,15 +485,6 @@ Congratulations! Here is your flag: KOMJAR25{B3ware_0f_M4lw4re_yau7ElDfafuTufKs0
 #### • Soal 20.c: What is the hash of the file containing the malware?
 
 No. 14
-Statistics > Capture File Properties
-<img width="1624" height="321" alt="Screenshot From 2025-09-30 14-11-52" src="https://github.com/user-attachments/assets/d29f9533-d028-4aea-9be9-b60f35285d74" />
-
-http.response && !data-text-lines contains "Invalid credentials"
-Result: Frame 500320
-Request in Frame: 500315
-<img width="1920" height="921" alt="Screenshot From 2025-09-30 14-13-09" src="https://github.com/user-attachments/assets/c05df4bd-cb8a-464a-884f-67f5128efb0d" />
-
-Go > Go to packet > 500315
 <img width="1920" height="921" alt="Screenshot From 2025-09-30 14-17-19" src="https://github.com/user-attachments/assets/6abc8840-599d-4dc4-a00f-1373eaea0491" />
 
 ]t]EN@@Qe^@R 8|
