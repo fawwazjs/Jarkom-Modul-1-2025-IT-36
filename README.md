@@ -243,7 +243,7 @@ Congratulations! Here is your flag: KOMJAR25{Brut3_F0rc3_LlP4CsiExCnDT7yPEZP3GTJ
 </p>
 
 <p align="justify">
-&emsp; Berdasarkan screenshot di atas, dengan memperhatikan detail dari mayoritas paket yang ditampilkan, khususnya pada bagian <b>Line-based text data</b>, server akan merespon dengan <b>Invalid credentials</b>. Hal ini menandakan bahwasannya tidak semua percobaan login yang dilakukan oleh client berhasil.
+&emsp; Berdasarkan screenshot di atas, dengan memperhatikan detail dari mayoritas paket yang ditampilkan, khususnya pada bagian <code>Line-based text data</code>, server akan merespon dengan <b>Invalid credentials</b>. Hal ini menandakan bahwasannya tidak semua percobaan login yang dilakukan oleh client berhasil.
 </p>
 
 <p align="justify">
@@ -255,11 +255,11 @@ Congratulations! Here is your flag: KOMJAR25{Brut3_F0rc3_LlP4CsiExCnDT7yPEZP3GTJ
 </p>
 
 <p align="justify">
-&emsp; Berdasarkan screenshot di atas, dapat disimpulkan bahwasannya paket pada frame <b>50320</b> menunjukkan keberhasilan login yang dilakukan oleh client.
+&emsp; Berdasarkan screenshot di atas, dapat disimpulkan bahwasannya paket pada frame <b>500320</b> menunjukkan keberhasilan login yang dilakukan oleh client.
 </p>
 
 <p align="justify">
-&emsp; Sehingga, untuk mengetahui secara definitif data terkait username dan password yang digunakan untuk login, kita bisa beralih ke paket request yang direspon oleh frame 50320, yaitu paket pada frame <b>50315</b> dengan cara menggunakan menu <code>Go > Go to Packet... > 50315</code>.
+&emsp; Sehingga, untuk mengetahui secara definitif data terkait username dan password yang digunakan untuk login, kita bisa beralih ke paket request yang direspon oleh frame 500320, yaitu paket pada frame <b>500315</b> dengan cara menggunakan menu <code>Go > Go to Packet... > 500315</code>.
 </p>
 
 <p align="center">
@@ -267,19 +267,44 @@ Congratulations! Here is your flag: KOMJAR25{Brut3_F0rc3_LlP4CsiExCnDT7yPEZP3GTJ
 </p>
 
 <p align="justify">
-&emsp; Setelah mendapatkan paket request dari client, maka langkah selanjutnya adalah untuk membuka <b>stream HTTP</b> dari paket tersebut melalui menu <code>Follow > HTTP Stream</code>.
+&emsp; Setelah mendapatkan paket request dari client, maka langkah selanjutnya adalah untuk membuka <b>stream HTTP</b> dari paket tersebut melalui menu <code>Follow > HTTP Stream</code> dan menampilkan stream dalam bentuk ASCII.
 </p>
 
 <p align="center">
-	<img width="80%" height="80%" alt="f" src="https://github.com/user-attachments/assets/3497a93a-d9f8-4cf9-a090-756d851a0628">
+	<img width="80%" height="80%" alt="f" src="https://github.com/user-attachments/assets/94dbc523-a645-4889-b38d-401365ff07c7">
 </p>
 
 <p align="justify">
-&emsp; Berdasarkan screenshot di atas, dapat disimpulkan bahwasannya username yang berhasil digunakan untuk login adalah <b>=n1enna</b> dan password yang digunakan adalah <b>y4v4nn4_k3m3nt4r1</b>. 
+&emsp; Berdasarkan screenshot di atas, dapat disimpulkan bahwasannya username yang berhasil digunakan untuk login adalah <b>n1enna</b> dengan password <b>y4v4nn4_k3m3nt4r1</b>.
 </p>
 
 #### • Soal 14.c: In which stream were the credentials found?
+
+<p align="justify">
+&emsp; Untuk mengetahui stream mana yang digunakan untuk membawa data username dan password, maka kita bisa melihat detail dari paket 500315, khususnya pada bagian <code>Transmission Control Protocol > Stream index</code>.
+</p>
+
+<p align="center">
+	<img width="80%" height="80%" alt="g" src="https://github.com/user-attachments/assets/bcab3d4d-8fb6-48a6-8605-ab2d06eb73f9">
+</p>
+
+<p align="justify">
+&emsp; Berdasarkan screenshot di atas, dapat disimpulkan bahwasannya stream yang digunakan untuk membawa data username dan password adalah stream dengan indeks <b>41824</b>.
+</p>
+
 #### • Soal 14.d: What tools are used for brute force?
+
+<p align="justify">
+&emsp; Terakhir, untuk mengetahui tool yang digunakan client dalam proses brute force username dan password, maka kita bisa kembali melihat stream HTTP dari frame 500315, khususnya pada bagian <code>User-Agent</code>.
+</p>
+
+<p align="justify">
+	<img width="80%" height="80%" alt="h" src="https://github.com/user-attachments/assets/a6079f88-2a21-48d4-91c9-c43274c59e98">
+</p>
+
+<p align="justify">
+&emsp; Berdasarkan screenshot di atas, dapat disimpulkan bahwasannya tool yang digunakan untuk melakukan brute force username dan password adalah <b>Fuzz Faster U Fool v2.1.0-dev</b>.
+</p>
 
 ### • Soal 15
 <blockquote>
