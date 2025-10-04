@@ -53,6 +53,7 @@ Rasulullah Shallallāhu ‘alaihi wa Sallam pernah bersabda:
 <img width="1920" height="1080" alt="Image" src="https://github.com/user-attachments/assets/1bae475a-4649-471d-844a-324b700c1b92" />
 
 ### • Soal 2
+
 <blockquote>
     <ol start="2">
         <li>
@@ -70,6 +71,7 @@ ke Eru
 <img width="1920" height="1080" alt="Image" src="https://github.com/user-attachments/assets/65761b8f-dd93-44e6-b4c6-0dc9760fbeee" />
 
 ### • Soal 3
+
 <blockquote>
     <ol start="3">
         <li>
@@ -105,6 +107,7 @@ ke masing-masing Ainur (Melkor, Manwe, Varda, Ulmo) dan masing-masing Ainur mela
 </blockquote>
 
 ### • Soal 5
+
 <blockquote>
     <ol start="5">
         <li>
@@ -157,6 +160,7 @@ echo nameserver 192.168.122.1 > /etc/resolv.conf
 ```
 
 ### • Soal 6
+
 <blockquote>
     <ol start="6">
         <li>
@@ -168,6 +172,7 @@ echo nameserver 192.168.122.1 > /etc/resolv.conf
 <img width="1920" height="1080" alt="Image" src="https://github.com/user-attachments/assets/27af889c-127c-4457-a819-6ae33c77e2ff" />
 
 ### • Soal 7
+
 <blockquote>
     <ol start="7">
         <li>
@@ -178,6 +183,7 @@ echo nameserver 192.168.122.1 > /etc/resolv.conf
 </blockquote>
 
 ### • Soal 8
+
 <blockquote>
     <ol start="8">
         <li>
@@ -188,6 +194,7 @@ echo nameserver 192.168.122.1 > /etc/resolv.conf
 </blockquote>
 
 ### • Soal 9
+
 <blockquote>
     <ol start="9">
         <li>
@@ -198,6 +205,7 @@ echo nameserver 192.168.122.1 > /etc/resolv.conf
 </blockquote>
 
 ### • Soal 10
+
 <blockquote>
     <ol start="10">
         <li>
@@ -208,6 +216,7 @@ echo nameserver 192.168.122.1 > /etc/resolv.conf
 </blockquote>
 
 ### • Soal 11
+
 <blockquote>
     <ol start="11">
         <li>
@@ -218,6 +227,7 @@ echo nameserver 192.168.122.1 > /etc/resolv.conf
 </blockquote>
 
 ### • Soal 12
+
 <blockquote>
     <ol start="12">
         <li>
@@ -228,6 +238,7 @@ echo nameserver 192.168.122.1 > /etc/resolv.conf
 </blockquote>
 
 ### • Soal 13
+
 <blockquote>
     <ol start="13">
         <li>
@@ -238,6 +249,7 @@ echo nameserver 192.168.122.1 > /etc/resolv.conf
 </blockquote>
 
 ### • Soal 14
+
 <blockquote>
     <ol start="14">
         <li>
@@ -373,6 +385,7 @@ Congratulations! Here is your flag: KOMJAR25{Brut3_F0rc3_LlP4CsiExCnDT7yPEZP3GTJ
 </p>
 
 ### • Soal 15
+
 <blockquote>
     <ol start="15">
         <li>
@@ -383,6 +396,7 @@ Congratulations! Here is your flag: KOMJAR25{Brut3_F0rc3_LlP4CsiExCnDT7yPEZP3GTJ
 </blockquote>
 
 ### • Soal 16
+
 <blockquote>
     <ol start="16">
         <li>
@@ -438,6 +452,7 @@ Congratulations! Here is your flag: KOMJAR25{Y0u_4r3_4_g00d_4nalyz3r_blETB2xtXYX
 #### • Soal 16.g: What is the hash of the fifth file (t.exe)?
 
 ### • Soal 17
+
 <blockquote>
     <ol start="17">
         <li>
@@ -468,11 +483,103 @@ Format: sha256
 Congratulations! Here is your flag: KOMJAR25{M4ster_4n4lyzer_9kTRAJDBg0k4TphQM6UI7BrYf}
 ```
 
+No. 17
+
+
+Statistics > Conversations
+Traffic terbanyak adalah antara IP 10.6.27.102 dan 107.180.50.162. Sehingga kemungkinan besar file malware dikirim antara keduanya. Filter:
+ip.addr == 10.6.27.102 && ip.addr == 107.180.50.162
+
+
+Volume traffic kebanyakan dari http. Kemungkinan besar mengirim malware.
+
+Filter:
+http
+
+Semuanya:
+http && ip.addr == 10.6.27.102 && ip.addr == 107.180.50.162
+<img width="1920" height="997" alt="Screenshot From 2025-10-01 07-47-33" src="https://github.com/user-attachments/assets/0c1a43cc-abcf-486c-9063-9fd4b80e0c62" />
+
+
+Urutan file pertama yang muncul berdasarkan GET (Server 107.180.50.162 (IP eksternal) mengirimkan file berdasarkan request client IP 10.6.27.102 (privat)):
+71    29.202755    10.6.27.102    107.180.50.162    HTTP    343    GET /Documents/Invoice&MSO-Request.doc HTTP/1.1
+ 
+Urutan file kedua yang muncul berdasarkan GET (Server 107.180.50.162 (IP eksternal) mengirimkan file berdasarkan request client IP 10.6.27.102 (privat)):
+356    38.470797    10.6.27.102    107.180.50.162    HTTP    361    GET /knr.exe HTTP/1.1 
+
+File -> Export Objects -> HTTP -> knr.exe -> Save
+
+<img width="1920" height="997" alt="Screenshot From 2025-10-01 07-55-36" src="https://github.com/user-attachments/assets/01218570-1ae9-4363-b702-f626c2aae15e" />
+
+
+sha256sum knr.exe
+
+<img width="1920" height="997" alt="Screenshot From 2025-10-01 07-57-05" src="https://github.com/user-attachments/assets/8fcaf938-4bc2-4aa4-a805-2ea501044201" />
+
+
+Output:
+749e161661290e8a2d190b1a66469744127bc25bf46e5d0c6f2e835f4b92db18
+
 #### • Soal 17.a: What is the name of the first suspicious file?
+
+<p align="justify">
+&emsp; Sebelum dapat mengetahui nama file yang memuat malware, kita perlu terlebih dahulu mengetahui secara definitif protokol apa yang digunakan attacker (Melkor) untuk mengirim file malware. Hal ini dapat dilakukan dengan beralih ke menu <code>Statistics > Protocol Hierarchy</code>.
+</p>
+
+<p align="center">
+	<img width="80%" height="80%" alt="x" src="https://github.com/user-attachments/assets/44fe03a6-db09-4c72-be35-751d0fd7fbb7">
+</p>
+
+<p align="justify">
+&emsp; Berdasarkan screenshot di atas, dapat disimpulkan bahwasannya kemungkinan protokol yang digunakan untuk mengirim file malware adalah <b>HTTP</b>.
+</p>
+
+<p align="justify">
+&emsp; Selain melihat protokol yang digunakan, kita juga perlu mengetahui secara definitif IP address mana yang berinteraksi dengan file malware tersebut dengan cara beralih ke menu <code>Statistics > Conversations</code>.
+</p>
+
+<p align="center">
+	<img width="80%" height="80%" alt="y" src="https://github.com/user-attachments/assets/ceb8cb94-d57d-4700-a358-a304fdb0e044">
+</p>
+
+<p align="justify">
+&emsp; Berdasarkan screenshot di atas, dapat disimpulkan bahwasannya kemungkinan IP address yang berinteraksi dengan file malware dan bertindak sebagai client adalah IP address <b>10.6.27.102</b> dikarenakan IP address tersebut merupakan IP privat, serta jumlah bytes dari paket yang dia dapat dari IP address <b>107.180.50.162</b> yang abnormal dibandingkan dengan percakapannya dengan IP address lain. Maka, keseluruhan display filter yang digunakan adalah <code>http && ip.src == 10.6.27.102 && ip.dst == 107.180.50.162</code>
+</p>
+
+<p align="center">
+	<img width="80%" height="80%" alt="z" src="https://github.com/user-attachments/assets/0b1ba4f1-7f7e-4799-8cfc-f80fb2c674f8">
+</p>
+
+<p align="justify">
+&emsp; Berdasarkan screenshot di atas, dapat disimpulkan bahwasannya nama file pertama yang memuat malware, dengan mengurutkannya berdasarkan frame di mana file tersebut berada, maka nama file malware pertama adalah <code>Invoice&MSO-Request.doc</code> yang berada pada frame <b>71</b>.
+</p>
+
 #### • Soal 17.b: What is the name of the second suspicious file?
+
+<p align="center">
+	<img width="80%" height="80%" alt="aa" src="https://github.com/user-attachments/assets/6c49e2ff-d78e-4198-a58e-7b2cc8a1bcdb">
+</p>
+
+<p align="justify">
+&emsp; Berdasarkan hasil temuan pada 17.a dan mengurutkannya berdasarkan frame di mana file tersebut berada, maka dapat disimpulkan bahwasannya file malware kedua adalah <code>knr.exe</code> yang berada pada frame <b>356</b>.
+</p>
+
 #### • Soal 17.c: What is the hash of the second suspicious file (knr.exe)?
 
+<p align="justify">
+&emsp; Sebelum kita dapat mengetahui hash dari file malware kedua, maka terlebih dahulu kita perlu menyimpan file tersebut pada penyimpanan lokal di komputer kita dengan memilih opsi <code>Save</code> untuk file <code>knr.exe</code> pada menu <code>File > Export Objects > HTTP...</code>. Hanya setelah itu baru kita dapat mendapatkan hash dari file <code>knr.exe</code> dengan <b>membuka terminal</b> dan menjalankan command <code>sha256sum [alamat file]</code>.
+</p>
+
+```sh
+sha256sum /home/fedora/Downloads/knr.exe
+749e161661290e8a2d190b1a66469744127bc25bf46e5d0c6f2e835f4b92db18  /home/fedora/Downloads/knr.exe
+```
+
+<p align="justify">
+&emsp; Setelah menjalankan command <code>sha256sum</code> pada file <code>knr.exe</code>, dapat disimpulkan bahwasannya hash dari file pertama dengan format SHA256 adalah <b>749e161661290e8a2d190b1a66469744127bc25bf46e5d0c6f2e835f4b92db18</b>.
+
 ### • Soal 18
+
 <blockquote>
     <ol start="18">
         <li>
@@ -626,6 +733,7 @@ cf99990bee6c378cbf56239b3cc88276eec348d82740f84e9d5c343751f82560  /home/fedora/D
 </p>
 
 ### • Soal 19
+
 <blockquote>
     <ol start="19">
         <li>
@@ -711,6 +819,7 @@ Pada stream TCP yang sama kita dapat mengetahui alamat dari dompet Bitcoin Your 
 </p>
 
 ### • Soal 20
+
 <blockquote>
     <ol start="20">
         <li>
@@ -1285,54 +1394,6 @@ tcp.port == 50157
 
 <img width="1920" height="997" alt="Screenshot From 2025-10-01 04-32-17" src="https://github.com/user-attachments/assets/b757fb97-3d3d-4f82-a25d-47ee06eee793" />
 
-
-
-
-
-
-No. 17
-<img width="1920" height="997" alt="Screenshot From 2025-10-01 07-36-33" src="https://github.com/user-attachments/assets/ceb8cb94-d57d-4700-a358-a304fdb0e044" />
-
-
-Statistics > Conversations
-Traffic terbanyak adalah antara IP 10.6.27.102 dan 107.180.50.162. Sehingga kemungkinan besar file malware dikirim antara keduanya. Filter:
-ip.addr == 10.6.27.102 && ip.addr == 107.180.50.162
-
-Statistics > Protocol Hierarchy
-
-<img width="1920" height="997" alt="Screenshot From 2025-10-01 07-42-08" src="https://github.com/user-attachments/assets/44fe03a6-db09-4c72-be35-751d0fd7fbb7" />
-
-
-
-
-Volume traffic kebanyakan dari http. Kemungkinan besar mengirim malware.
-
-Filter:
-http
-
-Semuanya:
-http && ip.addr == 10.6.27.102 && ip.addr == 107.180.50.162
-<img width="1920" height="997" alt="Screenshot From 2025-10-01 07-47-33" src="https://github.com/user-attachments/assets/0c1a43cc-abcf-486c-9063-9fd4b80e0c62" />
-
-
-Urutan file pertama yang muncul berdasarkan GET (Server 107.180.50.162 (IP eksternal) mengirimkan file berdasarkan request client IP 10.6.27.102 (privat)):
-71    29.202755    10.6.27.102    107.180.50.162    HTTP    343    GET /Documents/Invoice&MSO-Request.doc HTTP/1.1
- 
-Urutan file kedua yang muncul berdasarkan GET (Server 107.180.50.162 (IP eksternal) mengirimkan file berdasarkan request client IP 10.6.27.102 (privat)):
-356    38.470797    10.6.27.102    107.180.50.162    HTTP    361    GET /knr.exe HTTP/1.1 
-
-File -> Export Objects -> HTTP -> knr.exe -> Save
-
-<img width="1920" height="997" alt="Screenshot From 2025-10-01 07-55-36" src="https://github.com/user-attachments/assets/01218570-1ae9-4363-b702-f626c2aae15e" />
-
-
-sha256sum knr.exe
-
-<img width="1920" height="997" alt="Screenshot From 2025-10-01 07-57-05" src="https://github.com/user-attachments/assets/8fcaf938-4bc2-4aa4-a805-2ea501044201" />
-
-
-Output:
-749e161661290e8a2d190b1a66469744127bc25bf46e5d0c6f2e835f4b92db18
 
 ## Kendala Pengerjaan
 
