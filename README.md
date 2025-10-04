@@ -484,8 +484,6 @@ Congratulations! Here is your flag: KOMJAR25{Y0u_4re_J4rk0m_G0d_mZTuSO0QZ9AdMjOB
 
 #### • Soal 19.a: Who sent the threatening message?
 
-No. 19
-
 <p align="justify">
 &emsp; Diketahui bahwasannya protokol yang digunakan E-mail, khususnya perihal transfer atau pengiriman E-mail adalah protokol <b>SMTP</b>. Maka dari itu, display filter yang digunakan adalah <code>smtp</code>.
 </p>
@@ -1136,28 +1134,6 @@ Output untuk file:
 7054    1096.833911    10.6.26.110    10.6.26.6    SMB    219    NT Create AndX Request, FID: 0x4002, Path: \WINDOWS\d0p2nc6ka3f_fixhohlycj4ovqfcy_smchzo_ub83urjpphrwahjwhv_o5c0fvf6.exe
 
 7932    1096.944375    10.6.26.110    10.6.26.6    SMB    219    NT Create AndX Request, FID: 0x4003, Path: \WINDOWS\	
-
-
-
-
-No. 19
-
-Dalam sending email, protokol yang digunakan adalah SMTP.
-Filter:
-smtp
-<img width="1920" height="1003" alt="Screenshot From 2025-10-01 20-14-51" src="https://github.com/user-attachments/assets/7a9e7001-31ce-425d-a155-630412f58980" />
-
-
-
-Untuk mengetahui konten dari email yang dikirim tanpa terbagi-bagi menjadi paket-paket, maka kita bisa melakukan Follow TCP Stream
-
-<img width="1920" height="1003" alt="Screenshot From 2025-10-01 20-15-23" src="https://github.com/user-attachments/assets/4ddb0fef-eddb-4d44-aafb-2fd1bc95db39" />
-
-
-Seluruh isi dari email bisa dibaca.
-
-
-
 
 
 No. 20
