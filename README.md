@@ -149,6 +149,7 @@ nano /root/.bashrc
 ```
 <img width="1920" height="1080" alt="Image" src="https://github.com/user-attachments/assets/aea1e767-01f5-4651-abfc-27f3a6f54650" />
 tambahkan di bagian bawah bertanda # seperti gambar
+
 ```bash
 apt update && apt install -y iptables
 iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE -s 192.229.0.0/16
