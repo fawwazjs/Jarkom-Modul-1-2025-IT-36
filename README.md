@@ -483,8 +483,60 @@ Congratulations! Here is your flag: KOMJAR25{Y0u_4re_J4rk0m_G0d_mZTuSO0QZ9AdMjOB
 ```
 
 #### • Soal 19.a: Who sent the threatening message?
+
+No. 19
+
+<p align="justify">
+&emsp; Diketahui bahwasannya protokol yang digunakan E-mail, khususnya perihal transfer atau pengiriman E-mail adalah protokol <b>SMTP</b>. Maka dari itu, display filter yang digunakan adalah <code>smtp</code>.
+</p>
+
+<p align="center"> 
+	<img width="80%" height="80%" alt="i" src="https://github.com/user-attachments/assets/7a9e7001-31ce-425d-a155-630412f58980">
+</p>
+
+<p align="justify">
+&emsp; Kemudian, langkah selanjutnya setelah memfilter paket yang menggunakan protokol SMTP adalah kita dapat membuka <b>stream TCP</b> dari salah satu paket SMTP yang tertera tersebut untuk mengetahui isi dari E-mail yang dikirim oleh client (Melkor). Hal ini dikarenakan protokol SMTP tidak mengirimkan isi E-mail serta merta dilakukan sekaligus dalam satu paket, melainkan membagi isi E-mail ke dalam paket-paket yang berbeda.
+</p>
+
+<p align="center"> 
+	<img width="80%" height="80%" alt="j" src="https://github.com/user-attachments/assets/4ddb0fef-eddb-4d44-aafb-2fd1bc95db39">
+</p>
+
+<p align="center"> 
+	<img width="80%" height="80%" alt="k" src="https://github.com/user-attachments/assets/ebc9be2c-8816-4995-81f4-7c5bcfcc61b2">
+</p>
+
+<p align="justify">
+&emsp; Berdasarkan screenshot di atas, dapat disimpulkan bahwasannya user yang mengirimkan E-mail ancaman tersebut adalah <b>Your Life</b>.
+</p>
+
 #### • Soal 19.b: How much ransom did the attacker demand ($)?
+
+<p align="justify">
+Pada stream TCP yang sama kita dapat mengetahui seberapa jumlah uang dalam bentuk Bitcoin yang diminta oleh Your Life.
+</p>
+
+<p align="center"> 
+	<img width="80%" height="80%" alt="l" src="https://github.com/user-attachments/assets/597256c9-9eff-4b7e-9e51-b7fadbdb5040">
+</p>
+
+<p align="justify">
+&emsp; Berdasarkan screenshot di atas, dapat disimpulkan bahwasannya jumlah uang yang diminta oleh Your Life dalam bentuk Bitcoin adalah <b>1600$</b>.
+</p>
+
 #### • Soal 19.c: What is the attacker's bitcoin wallet?
+
+<p align="justify">
+Pada stream TCP yang sama kita dapat mengetahui alamat dari dompet Bitcoin Your Life.
+</p>
+
+<p align="center"> 
+	<img width="80%" height="80%" alt="m" src="https://github.com/user-attachments/assets/9e489f9c-e76e-44cd-8d7b-b792d0656021">
+</p>
+
+<p align="justify">
+&emsp; Berdasarkan screenshot di atas, dapat disimpulkan bahwasannya alamat dari dompet Bitcoin Your Life adalah <b>1CWHmuF8dHt7HBGx5RKKLgg9QA2GmE3UyL</b>.
+</p>
 
 ### • Soal 20
 <blockquote>
@@ -520,45 +572,6 @@ Congratulations! Here is your flag: KOMJAR25{B3ware_0f_M4lw4re_yau7ElDfafuTufKs0
 #### • Soal 20.a: What encryption method is used?
 #### • Soal 20.b: What is the name of the malicious file placed by the attacker?
 #### • Soal 20.c: What is the hash of the file containing the malware?
-
-No. 14
-Transmission Control Protocol, Src Port: 42334, Dst Port: 8000, Seq: 1, Ack: 1, Len: 233
-    Source Port: 42334
-    Destination Port: 8000
-    [Stream index: 41824]
-    [Stream Packet Number: 4]
-    [Conversation completeness: Complete, WITH_DATA (31)]
-    [TCP Segment Len: 233]
-    Sequence Number: 1    (relative sequence number)
-    Sequence Number (raw): 3964838560
-    [Next Sequence Number: 234    (relative sequence number)]
-    Acknowledgment Number: 1    (relative ack number)
-    Acknowledgment number (raw): 3292055442
-    1000 .... = Header Length: 32 bytes (8)
-    Flags: 0x018 (PSH, ACK)
-    Window: 502
-    [Calculated window size: 64256]
-    [Window size scaling factor: 128]
-    Checksum: 0xab7c [unverified]
-    [Checksum Status: Unverified]
-    Urgent Pointer: 0
-    Options: (12 bytes), No-Operation (NOP), No-Operation (NOP), Timestamps
-    [Timestamps]
-    [SEQ/ACK analysis]
-    TCP payload (233 bytes)
-Packet Details ^
-
-]t]EN@@Qe^@R 8|
-ja=POST /login.php HTTP/1.1 
-Host: 192.168.129.101:8000 
-User-Agent: Fuzz Faster U Fool v2.1.0-dev 
-Content-Length: 42 
-Content-Type: application/x-www-form-urlencoded 
-Accept-Encoding: gzip 
- 
-username=n1enna&password=y4v4nn4_k3m3nt4r1
-
-
 
 No. 15
 ===== Soal 15 =====
