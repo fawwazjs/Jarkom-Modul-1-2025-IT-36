@@ -524,14 +524,19 @@ Congratulations! Here is your flag: KOMJAR25{Y0u_4re_g0dl1ke_LfpxF7WQlyONdAnhyZq
 <p align="justify">
 &emsp; Berdasarkan screenshot di atas, bahwasannya terdapat tiga kemungkinan untuk protokol yang digunakan untuk mengirim file malware, yaitu TLS, HTTP, dan SMB. Namun, kita dapat menentukan protokol mana yang sebenarnya digunakan dengan mempertimbangkan hal-hal berikut:
 	<ol>
-		<li>Pada soal sebelumnya, Melkor telah menggunakan protokol HTTP untuk mengirim file malware. Serta, jika melihat pernyataan pada soal 18, di mana:
-		<blockquote>
-			Pada saat berpikir ia akhirnya memutuskan untuk membuat rencana jahat lainnya dengan meletakkan file berbahaya lagi tetapi dengan <b>metode yang berbeda</b>.
-		</blockquote>
-		Sehingga kemungkinan besar, Melkor tidak menggunakan HTTP untuk serangan kali ini.
+		<li>
+			<p align="justify">
+			Pada soal sebelumnya, Melkor telah menggunakan protokol HTTP untuk mengirim file malware. Hal ini didasari dengan merujuk pada pernyataan yang ada pada soal 18, di mana:
+			</p>
+			<blockquote>
+			"Pada saat berpikir ia akhirnya memutuskan untuk membuat rencana jahat lainnya dengan meletakkan file berbahaya lagi tetapi dengan <b>metode yang berbeda</b>."
+			</blockquote>
+			Sehingga kemungkinan besar, Melkor tidak menggunakan HTTP untuk serangan kali ini.
 		</li>
 		<li>
+			<p align="justify">
 			Spesifik untuk soal ini, kita tidak disediakan file key log yang krusial untuk dapat mendekripsi dan membaca data yang terkirim melalui protokol TLS. Sehingga kemungkinan besar, Melkor tidak menggunakan TLS untuk serangan kali ini (Sebenarnya bisa saja, namun kalau masalah memakai protokol TLS tetapi tidak ada file key log-nya itu beda cerita).
+			</p>
 		</li>
 	</ol>
 Maka dari itu, kemungkinan besar Melkor menggunakan protokol <b>SMB</b> untuk serangan kali ini.
@@ -548,10 +553,26 @@ Maka dari itu, kemungkinan besar Melkor menggunakan protokol <b>SMB</b> untuk se
 <p align="justify">
 &emsp; Berdasarkan screenshot di atas, dapat disimpulkan bahwasannya terdapat <b>dua file</b> yang membawa malware pada file PCAP ini, yaitu <code>\WINDOWS\d0p2nc6ka3f_..._o5c0fvf6.exe</code> dan <code>\WINDOWS\oiku9bu68cxqenfmcsos...hyh46l8n_di.exe</code> dengan mempertimbangkan beberapa hal ini:
 	<ol>
-		<li>Kedua file memiliki ukuran yang abnormal dibandingkan dengan file yang lain, di mana kedua file memiliki ukuran pada rentang <b>kB</b>, sedangkan file lain hanya berada di kisaran <b>puluhan byte</b> atau bahkan <b>nol</b>.</li>
-		<li>Kedua file memiliki ekstensi berupa <code>.exe</code> di mana ekstensi executable rentan dianggap sebagai pembawa malware.</li>
-		<li>Kedua file memiliki <code>Content Type</code> berupa <code>FILE</code></li>
-		<li>Hostname dari kedua file merupakan IP address privat dan bukan IP address eksternal seperti yang tertera pada file <code>\cliffstone.net\Policies\{31B2F340-016D-11D2-945F-00C04FB984F9}\gpt.ini</code> dan <code>\cliffstone.net\Policies\{31B2F340-016D-11D2-945F-00C04FB984F9}\gpt.ini</code></li>
+		<li>
+			<p align="justify">
+			Kedua file memiliki ukuran yang abnormal dibandingkan dengan file yang lain, di mana kedua file memiliki ukuran pada rentang <b>kB</b>, sedangkan file lain hanya berada di kisaran <b>puluhan byte</b> atau bahkan <b>nol</b>.
+			</p>
+		</li>
+		<li>
+			<p align="justify">
+			Kedua file memiliki ekstensi berupa <code>.exe</code> di mana ekstensi executable rentan dianggap sebagai pembawa malware.
+			</p>
+		</li>
+		<li>
+			<p align="justify">
+			Kedua file memiliki <code>Content Type</code> berupa <code>FILE</code>.
+			</p>
+		</li>
+		<li>
+			<p align="justify">
+			Hostname dari kedua file merupakan IP address privat dan bukan IP address eksternal seperti yang tertera pada file <code>\cliffstone.net\Policies\{31B2F340-016D-11D2-945F-00C04FB984F9}\gpt.ini</code>.
+			</p>
+		</li>
 	</ol>
 </p>
 
