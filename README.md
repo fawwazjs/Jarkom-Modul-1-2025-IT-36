@@ -79,7 +79,13 @@ ke Eru
     </ol>
 </blockquote>
 
-Melakukan   
+Melakukan deteksi IP nodes dengan menggunakan
+```bash
+ip a
+```
+<img width="1920" height="1080" alt="Image" src="https://github.com/user-attachments/assets/d46ed041-9d0b-49e0-a781-2fe9e399ee19" />
+<img width="1920" height="1080" alt="Image" src="https://github.com/user-attachments/assets/abe7e0a6-247c-4eb3-84ae-2e3296498943" />
+Lalu setelah menemukan IP dari nodes dapat melakukan ping:
 ```bash
 ping [IP Ainur] -c 3   
 ```   
