@@ -395,6 +395,305 @@ Congratulations! Here is your flag: KOMJAR25{Brut3_F0rc3_LlP4CsiExCnDT7yPEZP3GTJ
     </ol>
 </blockquote>
 
+```bash
+===== Soal 15 =====
+Difficulty: Medium
+Note: You can exit anytime by typing 'exit'
+
+What device does Melkor use?
+Format: string
+> Keyboard
+
+What did Melkor write?
+Format: string
+> UGx6X3ByMHYxZGVfeTB1cl91czNybjRtZV80bmRfcDRzc3cwcmQ=
+
+What is Melkor's secret message?
+Format: string
+> Plz_pr0v1de_y0ur_us3rn4me_4nd_p4ssw0rd
+Congratulations! Here is your flag: KOMJAR25{K3yb0ard_W4rr10r_QxBuvdKhn2ygOjGDBDhAjhPY3}
+```
+
+#### • Soal 15.a: What device does Melkor use?
+
+<p align="justify">
+Merujuk pada pernyataan yang ada pada soal 15, di mana:
+</p>
+
+<blockquote>
+Melkor menyusup ke ruang server dan memasang <b><i>keyboard</i></b> USB berbahaya pada node Manwe.
+</blockquote>
+
+<p align="justify">
+Berdasarkan pernyataan di atas, dapat disimpulkan bahwasannya, perangkat yang digunakan oleh Melkor adalah sebuah <b>keyboard</b>.
+</p>
+
+#### • Soal 15.b: What did Melkor write?
+
+<p align="center">
+	<img width="80%" height="80%" alt="aj" src="https://github.com/user-attachments/assets/b3cc3ea5-f2e7-4407-9c13-1f92ede7a7a6">
+</p>
+
+<p align="justify">
+&emsp; Diketahui bahwasannya keypress dari sebuah keyboard direkam pada paket dengan flag <code>URB_INTERRUPT in</code>, data terkait keypress itu sendiri tertera pada detail paket <code>URB_INTERRUPT in</code> khususnya pada bagian <code>HID Data</code>, dan data keypress tersebut sendiri memiliki destinasi yaitu <b>host</b> atau hub sentral dari semua perangkat USB. Maka, kita dapat menggunakan display filter yaitu <code>usb.transfer_type == 0x01 && !usb.src == host</code>.
+</p>
+
+<p align="center">
+	<img width="80%" height="80%" alt="ak" src="https://github.com/user-attachments/assets/a8a67bed-b1b0-44a1-8193-8e68781615c6">
+</p>
+
+<p align="justify">
+&emsp; Namun, mengambil data HID dari setiap paket akan memakan waktu yang sangat lama apabila dilakukan satu per satu. Oleh karena itu, kita dapat menggunakan command <code>tshark</code> atau Wireshark pada CLI untuk melakukan otomatisasi pengambilan data HID daris setiap paket yang sesuai dengan kriteria display filter. Di mana command lengkapnya adalah:
+</p>
+
+```sh
+tshark -r /home/fedora/Downloads/hiddenmsg.pcapng -Y 'usb.transfer_type == 0x01 && !usb.src == host' -T fields -e usbhid.data
+```
+
+Di mana:
+- `tshark`: Wireshark pada CLI.
+- `-r /home/fedora/Downloads/hiddenmsg.pcapng`: file PCAP yang akan diekstraksi datanya.
+- `-Y 'usb.transfer_type == 0x01 && !usb.src == host'`: display filter yang digunakan untuk mencari paket yang sesuai kriteria.
+- `-T fields -e usbhid.data`: mengambil field HID data pada detail setiap paket.
+
+<p align="justify">
+Output dari command tersebut adalah:
+</p>
+
+```sh
+0200000000000000
+0200180000000000
+0200000000000000
+0000000000000000
+0000000000000000
+0200000000000000
+02000a0000000000
+0200000000000000
+0000000000000000
+0000000000000000
+00001b0000000000
+0000000000000000
+0000000000000000
+0000230000000000
+0000000000000000
+0000000000000000
+0200000000000000
+02001b0000000000
+0200000000000000
+0000000000000000
+0000000000000000
+0000200000000000
+0000000000000000
+0000000000000000
+0200000000000000
+0200050000000000
+0200000000000000
+0000000000000000
+0000000000000000
+00001c0000000000
+0000000000000000
+0000000000000000
+0200000000000000
+0200100000000000
+0200000000000000
+02000b0000000000
+0200000000000000
+02001c0000000000
+0200000000000000
+0000000000000000
+0000000000000000
+00001b0000000000
+0000000000000000
+0000000000000000
+0200000000000000
+02001d0000000000
+0200000000000000
+02000a0000000000
+0200000000000000
+0200190000000000
+0200000000000000
+0000000000000000
+0000000000000000
+0000090000000000
+0000000000000000
+0000000000000000
+0000080000000000
+0000000000000000
+0000000000000000
+0200000000000000
+0200170000000000
+0200000000000000
+0200050000000000
+0200000000000000
+0000000000000000
+0000000000000000
+00001e0000000000
+0000000000000000
+0000000000000000
+0000060000000000
+0000000000000000
+0000000000000000
+00000f0000000000
+0000000000000000
+0000000000000000
+0000260000000000
+0000000000000000
+0000000000000000
+00001e0000000000
+0000000000000000
+0000000000000000
+0000060000000000
+0000000000000000
+0000000000000000
+00001d0000000000
+0000000000000000
+0000000000000000
+0200000000000000
+0200110000000000
+0200000000000000
+0000000000000000
+0000000000000000
+00001c0000000000
+0000000000000000
+0000000000000000
+0000050000000000
+0000000000000000
+0000000000000000
+00000d0000000000
+0000000000000000
+0000000000000000
+0200000000000000
+0200150000000000
+0200000000000000
+0000000000000000
+0000000000000000
+0000170000000000
+0000000000000000
+0000000000000000
+0200000000000000
+02001d0000000000
+0200000000000000
+0000000000000000
+0000000000000000
+0200000000000000
+0200190000000000
+0200000000000000
+0000000000000000
+0000000000000000
+0000250000000000
+0000000000000000
+0000000000000000
+0000270000000000
+0000000000000000
+0000000000000000
+0000050000000000
+0000000000000000
+0000000000000000
+0000100000000000
+0000000000000000
+0000000000000000
+0200000000000000
+0200150000000000
+0200000000000000
+0000000000000000
+0000000000000000
+0000090000000000
+0000000000000000
+0000000000000000
+0000060000000000
+0000000000000000
+0000000000000000
+0200000000000000
+0200070000000000
+0200000000000000
+0000000000000000
+0000000000000000
+0200000000000000
+0200150000000000
+0200000000000000
+0000000000000000
+0000000000000000
+00001d0000000000
+0000000000000000
+0000000000000000
+0000060000000000
+0000000000000000
+0000000000000000
+0000200000000000
+0000000000000000
+0000000000000000
+0000060000000000
+0000000000000000
+0000000000000000
+00001a0000000000
+0000000000000000
+0000000000000000
+0000060000000000
+0000000000000000
+0000000000000000
+0000100000000000
+0000000000000000
+0000000000000000
+0200000000000000
+0200140000000000
+0200000000000000
+0000000000000000
+0000000000000000
+00002e0000000000
+0000000000000000
+0000000000000000
+```
+
+<p align="justify">
+&emsp; Namun, output heksadesimal di atas masih bersifat mentah dan sulit dibaca. Oleh karena itu, dibuatlah suatu program Python yang dapat menerjemahkan output tersebut. 
+</p>
+
+```py
+#!/usr/bin/env python3
+import sys
+
+hidmap = {
+    0x04: "a", 0x05: "b", 0x06: "c", 0x07: "d", 0x08: "e", 0x09: "f",
+    0x0A: "g", 0x0B: "h", 0x0C: "i", 0x0D: "j", 0x0E: "k", 0x0F: "l",
+    0x10: "m", 0x11: "n", 0x12: "o", 0x13: "p", 0x14: "q", 0x15: "r",
+    0x16: "s", 0x17: "t", 0x18: "u", 0x19: "v", 0x1A: "w", 0x1B: "x",
+    0x1C: "y", 0x1D: "z",
+    0x1E: "1", 0x1F: "2", 0x20: "3", 0x21: "4", 0x22: "5",
+    0x23: "6", 0x24: "7", 0x25: "8", 0x26: "9", 0x27: "0",
+    0x28: "\n", 
+    0x2C: " ", 
+    0x2D: "-", 0x2E: "=", 0x2F: "[", 0x30: "]",
+    0x33: ";", 0x34: "'", 0x36: ",", 0x37: ".", 0x38: "/",
+}
+
+def decode(keyhex):
+    report = bytes.fromhex(keyhex)
+    mod = report[0]
+    keycodes = report[2:] 
+    out = ""
+    for keycode in keycodes:
+        if keycode == 0: continue
+        char = hidmap.get(keycode, f"[{keycode:02x}]")
+        if mod & 0x02:
+            char = char.upper()
+        out += char
+    return out
+
+for line in sys.stdin:
+    line = line.strip()
+    if line:
+        sys.stdout.write(decode(line))
+```
+
+<p align="justify">
+&emsp; Sehingga outputnya menjadi <b>UGx6X3ByMHYxZGVfeTB1cl91czNybjRtZV80bmRfcDRzc3cwcmQ=</b>, di mana ini merupakan apa yang diketik oleh Melkor pada keyboard.
+</p>
+
+#### • Soal 15.c: What is Melkor's secret message?
+
+<p align="justify">
+&emsp; Diketahui bahwasannya output dari soal 15.b tersebut diakhiri dengan simbol <code>=</code>. Hal ini menyatakan bahwasannya kemungkinan besar output tersebut dienkode menggunakan metode enkode <b>Base64</b>. Di mana jika output tersebut dimasukkan sebagai input (pipe) ke dalam command <code></code>base64 --decode</code> akan menghasilkan string yaitu <b>Plz_pr0v1de_y0ur_us3rn4me_4nd_p4ssw0rd</b> yang merupakan pesan rahasia dari Melkor.
+	
 ### • Soal 16
 
 <blockquote>
@@ -442,52 +741,6 @@ Format: sha256
 > 10ce4b79180a2ddd924fdc95951d968191af2ee3b7dfc96dd6a5714dbeae613a
 Congratulations! Here is your flag: KOMJAR25{Y0u_4r3_4_g00d_4nalyz3r_blETB2xtXYXJAS5ghgqZqxg8B}
 ```
-
-No. 16
-
-FTP = File Transfer Protocol
-
-229    17.282471    216.55.163.106    10.6.13.102    FTP    101    Response: 331 User ind@psg420.com OK. Password required
-
-231    17.282954    10.6.13.102    216.55.163.106    FTP    73    Request: PASS {6r_6e#TfT1p
-
-What credential did the attacker use to log in?
-Format: user:pass
-> ind@psg420.com:{6r_6e#TfT1p
-
-Pada HTTP tidak ada indikasi seperti GET halaman login. Mencoba protokol lain, seperti FTP.
-
-How many files are suspected of containing malware?
-Format: int
-> 5
-
-q.exe
-w.exe
-e.exe
-r.exe
-t.exe
-
-
-Jumlah IP pada PCAP ada 5. IP 10.6.13.102 merupakan IP pertama yang meminta request SYN, Jumlah Bytes yang dikirim cukup besar, Merupakan IP private dan bukan IP eksternal dengan geolokasi. Potensi Malware.
-Jadi filter pertama:
-ip.src = 10.6.13.102
-
-
-
-FTP menjadi protokol dengan persentase Bytes terbesar pada PCAP. Memiliki potensi membawa malware. FTP didesain untuk mentransfer file.
-
-Filter ke 2:
-ftp
-
-<img width="1920" height="997" alt="Screenshot From 2025-10-01 02-27-51" src="https://github.com/user-attachments/assets/4f1fd1d3-32d0-4b52-a89b-1b48a5194a18" />
-
-
-Secara langsung dapat terlihat dua frame yang menarik, yaitu frame 227 dan frame 231.
-Sehingga:
-USER ind@psg420.com
-PASS PASS {6r_6e#TfT1p
-
-<img width="1920" height="997" alt="Screenshot From 2025-10-01 02-35-15" src="https://github.com/user-attachments/assets/c683932a-50c3-4300-8c87-2b05883da87f" />
 
 #### • Soal 16.a: What credential did the attacker use to log in?
 
@@ -1367,149 +1620,6 @@ Ada sama dengan di akhir -> Base64. Decode:
 
 Output:
 Plz_pr0v1de_y0ur_us3rn4me_4nd_p4ssw0rd
-
-
-
-
-Dua command FTP yang menarik perhatian:
-RETR <filename> -> Client downloads a file from server.
-STOR <filename> -> Client uploads a file to server.
-
-STOR pada file PCAP tidak menunjukkan adanya file malware dan hanya berupa logs. Sedangkan pada RETR terdapat 5 file yang muncul dan kemungkinan berbahaya (File exe).
-
-Jumlah ada 5: q.exe, w.exe, e.exe, r.exe, t.exe
-
-<img width="1920" height="997" alt="Screenshot From 2025-10-01 04-05-58" src="https://github.com/user-attachments/assets/98ebe473-9e86-4a97-b6ff-0445fc0b378d" />
-
-
-
-Lihat detail SIZE dari setiap file malware
-ftp && ip.src == 10.6.13.102 && ftp.request.command == "SIZE"
-Mencari IP dan port yang digunakan server untuk terhubung ke client dan mengunduh file malware.
-
-Pindah ke SETUP frame: 241
-
-<img width="1920" height="997" alt="Screenshot From 2025-10-01 04-10-11" src="https://github.com/user-attachments/assets/d03247a4-3d53-4c99-be4b-76621f308f67" />
-
-
-File Transfer Protocol (FTP)
-    227 Entering Passive Mode (216,55,163,106,199,145)\r\n
-        Response code: Entering Passive Mode (227)
-        Response arg: Entering Passive Mode (216,55,163,106,199,145)
-        Passive IP address: 216.55.163.106
-        Passive port: 51089
-
-Filter paket yang datang (source) dari port 51089 dengan filter:
-tcp.port == 51089
-
-<img width="1920" height="997" alt="Screenshot From 2025-10-01 04-13-01" src="https://github.com/user-attachments/assets/362cb674-45a0-4c65-b76f-3e152ca58c06" />
-
-
-Kemudian pilih salah satu paket dan Follow TCP Stream
-
-Isi dari TCP stream tersebut adalah Isi dari q.exe.
-Pilih:
-Entire Conversations -> Show As Raw -> Save As -> q.exe
-
-<img width="1920" height="997" alt="Screenshot From 2025-10-01 04-12-36" src="https://github.com/user-attachments/assets/00c03161-eb6e-4962-b413-bb6cf17150fe" />
-
-
-Gunakan command sha256sum untuk mengetahui hash dari q.exe:
-
-<img width="1920" height="997" alt="Screenshot From 2025-10-01 04-14-02" src="https://github.com/user-attachments/assets/4a1adb68-6136-4710-b22f-d36bc5c8da87" />
-
-
-
-Output:
-ca34b0926cdc3242bbfad1c4a0b42cc2750d90db9a272d92cfb6cb7034d2a3bd
-
-w.exe:
-
-<img width="1920" height="997" alt="Screenshot From 2025-10-01 04-29-36" src="https://github.com/user-attachments/assets/0757b7fb-8891-4029-95b6-c49994b75e85" />
-
-
-Setup Frame: 1111
-
-
-<img width="1920" height="997" alt="Screenshot From 2025-10-01 04-15-47" src="https://github.com/user-attachments/assets/aa5f0380-f995-4f2a-b4ff-31b0e373842b" />
-
-<img width="1920" height="997" alt="Screenshot From 2025-10-01 04-17-34" src="https://github.com/user-attachments/assets/95b91cba-0cdc-44b4-b49e-4bccaa5c7c11" />
-
-<img width="1920" height="997" alt="Screenshot From 2025-10-01 04-17-06" src="https://github.com/user-attachments/assets/4b470a77-c0ba-485a-ac0c-021faebb4cf9" />
-
-
-SIZE -> Setup Frame -> Port server: 59785
-tcp.port == 59785
-Follow TCP Stream
-Save as w.exe
-sha265sum
-
-<img width="1920" height="997" alt="Screenshot From 2025-10-01 04-18-47" src="https://github.com/user-attachments/assets/0d80245e-b541-493e-8a9f-b21fc978a8c0" />
-
-e.exe:
-
-<img width="1920" height="997" alt="Screenshot From 2025-10-01 04-28-52" src="https://github.com/user-attachments/assets/32207eb6-45c0-47db-9a26-70d2750e2e80" />
-
-
-Setup Frame: 1295
-<img width="1920" height="997" alt="Screenshot From 2025-10-01 04-21-38" src="https://github.com/user-attachments/assets/3fad5f55-6cab-43e4-be7d-b535004e9d42" />
-
-
-
-Port: 49506
-
-tcp.port == 49506
-
-<img width="1920" height="997" alt="Screenshot From 2025-10-01 04-23-04" src="https://github.com/user-attachments/assets/1a4dc2b3-2525-45ea-bafa-9e9ecfab66f2" />
-
-
-<img width="1920" height="997" alt="Screenshot From 2025-10-01 04-23-26" src="https://github.com/user-attachments/assets/91b085b1-ddde-40b9-8d9c-022973e59eae" />
-
-
-<img width="1920" height="997" alt="Screenshot From 2025-10-01 04-24-02" src="https://github.com/user-attachments/assets/6471dc1e-3bd9-44b5-8980-fe037e522e6c" />
-
-
-r.exe:
-
-<img width="1920" height="997" alt="Screenshot From 2025-10-01 04-28-39" src="https://github.com/user-attachments/assets/c3fccab0-e928-4f43-8009-7f3676a905f4" />
-
-
-Setup Frame: 2445
-
-<img width="1920" height="997" alt="Screenshot From 2025-10-01 04-25-33" src="https://github.com/user-attachments/assets/63d6ded1-558a-4aa7-8b72-68405d5cb05b" />
-
-
-Port: 60899
-tcp.port == 60899
-<img width="1920" height="997" alt="Screenshot From 2025-10-01 04-26-44" src="https://github.com/user-attachments/assets/ceecb518-f03b-400b-abad-bd918cc2e3f6" />
-
-
-<img width="1920" height="997" alt="Screenshot From 2025-10-01 04-26-55" src="https://github.com/user-attachments/assets/b6396d0f-3075-4916-943f-9eddc001fea3" />
-
-
-<img width="1920" height="997" alt="Screenshot From 2025-10-01 04-27-31" src="https://github.com/user-attachments/assets/1838e2ed-8dd8-4468-8abd-2e304d54573b" />
-
-
-
-t.exe:
-
-<img width="1920" height="997" alt="Screenshot From 2025-10-01 04-28-20" src="https://github.com/user-attachments/assets/1d1c51bc-97af-42fb-8b47-82249a533fcb" />
-
-
-Setup Frame: 2643
-<img width="1920" height="997" alt="Screenshot From 2025-10-01 04-30-59" src="https://github.com/user-attachments/assets/12c1d57f-b119-49ad-b16a-1d3e9ad7bae7" />
-
-
-
-Port: 50157
-tcp.port == 50157
-<img width="1920" height="997" alt="Screenshot From 2025-10-01 04-31-33" src="https://github.com/user-attachments/assets/665f74e1-47d5-49c9-aa6d-ddac8d3ddd02" />
-
-<img width="1920" height="997" alt="Screenshot From 2025-10-01 04-31-45" src="https://github.com/user-attachments/assets/b8e19c48-540a-43b3-bd7a-63e42c362b04" />
-
-
-<img width="1920" height="997" alt="Screenshot From 2025-10-01 04-32-17" src="https://github.com/user-attachments/assets/b757fb97-3d3d-4f82-a25d-47ee06eee793" />
-
 
 ## Kendala Pengerjaan
 
