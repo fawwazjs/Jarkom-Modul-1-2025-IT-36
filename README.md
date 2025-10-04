@@ -765,7 +765,7 @@ Congratulations! Here is your flag: KOMJAR25{Y0u_4r3_4_g00d_4nalyz3r_blETB2xtXYX
 </p>
 
 <p align="justify">
-&emsp; Berdasarkan screenshot di atas, dapat disimpulkan bahwasannya kemungkinan IP address yang berinteraksi dengan file malware dan bertindak sebagai client adalah IP address <b>10.6.13.102</b> dikarenakan IP address tersebut merupakan <b>IP privat</b>, IP address pertama yang <b>meminta request SYN</b> terhadap server, teserta jumlah bytes dari paket yang dia dapat dari IP address <b>216.55.163.106</b> yang abnormal dibandingkan dengan percakapannya dengan IP address lain. Maka, keseluruhan display filter yang digunakan adalah <code>ftp && ip.src == 10.6.13.102 && ip.dst == 216.55.163.106</code>
+&emsp; Berdasarkan screenshot di atas, dapat disimpulkan bahwasannya kemungkinan IP address yang berinteraksi dengan file malware dan bertindak sebagai client adalah IP address <b>10.6.13.102</b> dikarenakan IP address tersebut merupakan <b>IP privat</b>, IP address pertama yang <b>meminta request SYN</b> terhadap server, teserta jumlah bytes dari paket yang dia dapat dari IP address <b>216.55.163.106</b> yang abnormal dibandingkan dengan percakapannya dengan IP address lain. Maka, keseluruhan display filter yang digunakan adalah <code>ftp && ip.src == 10.6.13.102 && ip.dst == 216.55.163.106</code>.
 </p>
 
 <p align="center">
@@ -798,7 +798,7 @@ Congratulations! Here is your flag: KOMJAR25{Y0u_4r3_4_g00d_4nalyz3r_blETB2xtXYX
 <ol>
 	<li>
 		<p align="justify">
-			&emsp; Membuka detail dari paket dengan info <code>SIZE q.exe</code> dengan cara menggunakan display filter <code>ftp && ip.src == 10.6.13.102 && ip.dst == 216.55.163.106 && _ws.col.info contains "SIZE q.exe"</code>.
+			Membuka detail dari paket dengan info <code>SIZE q.exe</code> dengan cara menggunakan display filter <code>ftp && ip.src == 10.6.13.102 && ip.dst == 216.55.163.106 && _ws.col.info contains "SIZE q.exe"</code>.
 		</p>
 		<p align="center">
 			<img width="80%" height="80%" alt="af" src="https://github.com/user-attachments/assets/55e1042c-5122-4c66-8865-6e7503d391f6">
@@ -806,7 +806,7 @@ Congratulations! Here is your flag: KOMJAR25{Y0u_4r3_4_g00d_4nalyz3r_blETB2xtXYX
 	</li>
 	<li>
 		<p align="justify">
-			&emsp; Pindah ke frame yang tertera pada <code>File Transfer Protocol (FTP) > Setup frame</code> dengan cara beralih ke menu <code>Go > Go to Packet... > 241</code>. Pada detail paket, temukan port yang digunakan untuk mengirim file <code>q.exe</code> dengan cara melihat pada <code>File Transfer Protocol (FTP) > 227 Entering Passive Mode (216,55,163,106,199,145)\r\n > Passive port</code>.
+			Pindah ke frame yang tertera pada <code>File Transfer Protocol (FTP) > Setup frame</code> dengan cara beralih ke menu <code>Go > Go to Packet... > 241</code>. Pada detail paket, temukan port yang digunakan untuk mengirim file <code>q.exe</code> dengan cara melihat pada <code>File Transfer Protocol (FTP) > 227 Entering Passive Mode (216,55,163,106,199,145)\r\n > Passive port</code>.
 		</p>
 		<p align="center">
 			<img width="80%" height="80%" alt="ag" src="https://github.com/user-attachments/assets/32887a2e-034b-49ac-868f-16f7aa4db274">
@@ -814,7 +814,7 @@ Congratulations! Here is your flag: KOMJAR25{Y0u_4r3_4_g00d_4nalyz3r_blETB2xtXYX
 	</li>
 	<li>
 		<p align="justify">
-			&emsp; Gunakan port yang telah ditemukan pada detail paket <code>Setup Frame</code> tersebut sebagai display filter. Yaitu <code>tcp.port == 51089</code>.
+			Gunakan port yang telah ditemukan pada detail paket <code>Setup Frame</code> tersebut sebagai display filter. Yaitu <code>tcp.port == 51089</code>.
 		</p>
 		<p align="center">
 			<img width="80%" height="80%" alt="ah" src="https://github.com/user-attachments/assets/6f19fcb4-2b44-4c3b-ac5b-f3c7f1f1dcd2">
@@ -822,7 +822,7 @@ Congratulations! Here is your flag: KOMJAR25{Y0u_4r3_4_g00d_4nalyz3r_blETB2xtXYX
 	</li>
 	<li>
 		<p align="justify">
-			&emsp; Pilih salah satu paket dan lakukan <code>Follow > TCP Stream > Show as Raw</code>. Di mana angka-angka panjang yang tertera pada menu tersebut merupakan <b>isi dari file</b> <code>q.exe</code>, hanya saja isinya dibagi-bagi menjadi paket yang berbeda saat proses transmisi namun tetap satu stream. Setelah itu, pilih opsi <code>Save as... > q.exe</code> untuk menyimpan isi file tersebut pada penyimpanan lokal di komputer.
+			Pilih salah satu paket dan lakukan <code>Follow > TCP Stream > Show as Raw</code>. Di mana angka-angka panjang yang tertera pada menu tersebut merupakan <b>isi dari file</b> <code>q.exe</code>, hanya saja isinya dibagi-bagi menjadi paket yang berbeda saat proses transmisi namun tetap satu stream. Setelah itu, pilih opsi <code>Save as... > q.exe</code> untuk menyimpan isi file tersebut pada penyimpanan lokal di komputer.
 		</p>
 		<p align="center">
 			<img width="80%" height="80%" alt="ai" src="https://github.com/user-attachments/assets/8aef956e-9bec-4fa4-b1e3-a4dfacf272de">
