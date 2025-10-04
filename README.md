@@ -75,6 +75,8 @@ Melakukan ```ping  google.com -c 3``` ke Eru
 </blockquote>
 Melakukan ```ping [IP Ainur] -c 3``` ke masing-masing Ainur (Melkor, Manwe, Varda, Ulmo) dan masing-masing Ainur melakukan ping IP dengan Ainur lainnya.
 <img width="1920" height="1080" alt="Image" src="https://github.com/user-attachments/assets/fc8952e9-4e99-40eb-9452-0dfc7362a355" />
+<img width="1920" height="1080" alt="Image" src="https://github.com/user-attachments/assets/f76e1dc0-15ec-4c86-aebc-80e61169b0db" />
+
 
 ### • Soal 4
 <blockquote>
@@ -105,6 +107,7 @@ Melakukan ```ping [IP Ainur] -c 3``` ke masing-masing Ainur (Melkor, Manwe, Vard
         </li>
     </ol>
 </blockquote>
+<img width="1920" height="1080" alt="Image" src="https://github.com/user-attachments/assets/27af889c-127c-4457-a819-6ae33c77e2ff" />
 
 ### • Soal 7
 <blockquote>
