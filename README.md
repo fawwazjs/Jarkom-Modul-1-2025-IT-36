@@ -522,7 +522,7 @@ Congratulations! Here is your flag: KOMJAR25{Y0u_4re_g0dl1ke_LfpxF7WQlyONdAnhyZq
 </p>
 
 <p align="justify">
-&emsp; Berdasarkan screenshot di atas, bahwasannya terdapat tiga kemungkinan untuk protokol yang digunakan untuk mengirim file malware, yaitu TLS, HTTP, dan SMB. Namun, kita dapat menentukan protokol mana yang sebenarnya digunakan dengan mempertimbangkan hal-hal berikut:
+&emsp; Berdasarkan screenshot di atas, dapat disimpulkan bahwasannya terdapat tiga kemungkinan untuk protokol yang digunakan untuk mengirim file malware, yaitu TLS, HTTP, dan SMB. Namun, kita dapat menentukan protokol mana yang sebenarnya digunakan dengan mempertimbangkan hal-hal berikut:
 	<ol>
 		<li>
 			<p align="justify">
@@ -742,8 +742,83 @@ Congratulations! Here is your flag: KOMJAR25{B3ware_0f_M4lw4re_yau7ElDfafuTufKs0
 ```
 
 #### • Soal 20.a: What encryption method is used?
+
+<p align="justify">
+&emsp; Sebelum dapat mengetahui jumlah file yang memuat malware, kita perlu terlebih dahulu mengetahui secara definitif protokol apa yang digunakan attacker (Melkor) untuk mengirim file malware. Hal ini dapat dilakukan dengan beralih ke menu <code>Statistics > Protocol Hierarchy</code>.
+</p>
+
+<p align="center">
+	<img width="80%" height="80%" alt="r" src="https://github.com/user-attachments/assets/486004da-d834-46ba-accf-8f16792f382c">
+</p>
+
+<p align="justify">
+&emsp; Berdasarkan screenshot di atas, dapat disimpulkan bahwasannya kemungkinan protokol yang digunakan sekaligus metode enkripsi yang digunakan untuk mengirim file malware adalah <b>TLS</b> (Soal hanya membutuhkan TLS sebagai jawaban, namun pada detail salah satu paket yang menggunakan protokol TLS, khususnya pada bagian <code>Server Hello -> Cipher Suite</code>, kita dapat mengetahui bahwasannya enkripsi yang digunakan oleh TLS adalah <code>TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256</code>).
+</p>
+
 #### • Soal 20.b: What is the name of the malicious file placed by the attacker?
+
+<p align="justify">
+&emsp; Selain melihat protokol yang digunakan, kita juga perlu mengetahui secara definitif IP address mana yang berinteraksi dengan file malware tersebut dengan cara beralih ke menu <code>Statistics > Conversations</code>.
+</p>
+
+<p align="center">
+	<img width="80%" height="80%" alt="s" src="https://github.com/user-attachments/assets/7a40f897-1d40-450f-89ac-a3fc8bb144e6">
+</p>
+
+<p align="justify">
+&emsp; Berdasarkan screenshot di atas, dapat disimpulkan bahwasannya kemungkinan IP address yang berinteraksi dengan file malware dan bertindak sebagai client adalah IP address <b>10.4.1.101</b> dikarenakan IP address tersebut merupakan IP privat, serta jumlah bytes dari paket yang dia dapat dari IP address <b>94.103.84.245</b> yang abnormal dibandingkan dengan percakapannya dengan IP address lain.
+</p>
+
+<p align="justify">
+&emsp; Juga, sebelum dapat melihat data yang berada paket-paket yang melalui IP address 10.4.1.101 dan dienkripsi dengan TLS, khususnya yang bersifat ECDHE, maka kita perlu meng-import suatu file lient-side pre-master secrets (SSLKEYLOGFILE) yang telah disediakan oleh soal dengan cara beralih ke menu <code>Edit -> Preferences -> Protocols -> TLS -> (Pre)-Master-Secret log filename -> Browse… -> keyslogfile.txt (sudah disediakan) -> Apply -> OK</code>. 
+</p>
+
+<p align="center">
+	<img width="80%" height="80%" alt="t" src="https://github.com/user-attachments/assets/b17ed666-c58d-4fcb-a4d0-611d8d3c663a">
+</p>
+
+<p align="justify">
+Sehingga tampilan paket-paket yang terenkripsi TLS akan berubah menjadi:
+</p>
+
+<p align="center">
+	<img width="80%" height="80%" alt="u" src="https://github.com/user-attachments/assets/ec643924-240b-40aa-84cc-5ab8f506e1d4">
+</p>
+
+<p align="justify">
+&emsp; Berdasarkan screenshot di atas, terdapat beberapa paket-paket yang pada awalnya tertera menggunakan protokol TLS yang terenkripsi berubah menjadi menunjukkan protokol <b>HTTP</b> yang dapat dibaca. Sehingga untuk mencari file, kita dapat menggunakan display filter yaitu <code>http && http.request.method == "GET"</code>, di mana GET umumnya digunakan untuk melakukan request suatu file kepada server.
+</p>
+
+<p align="center">
+	<img width="80%" height="80%" alt="v" src="https://github.com/user-attachments/assets/f6dd7269-c790-43c9-a482-c9f88637aa0e">
+</p>
+
+<p align="justify">
+&emsp; Berdasarkan screenshot di atas, dapat disimpulkan bahwasannya file malware yang digunakan oleh attacker (Melkor) adalah <code>invest_20.dll</code> dikarenakan kedua file yang lain kemungkinan besar hanya merupakan konfigurasi yang dilakukan oleh sistem Windows.
+</p>
+
 #### • Soal 20.c: What is the hash of the file containing the malware?
+
+<p align="justify">
+&emsp; Sebelum kita dapat mengetahui hash dari file malware, maka terlebih dahulu kita perlu menyimpan file <code>invest_20.dll</code> pada penyimpanan lokal di komputer kita dengan cara beralih ke menu <code>File > Export Objects > HTTP...</code> dan memilih opsi <code>Save</code>.
+</p>
+
+<p align="center">
+	<img width="80%" height="80%" alt="w" src="https://github.com/user-attachments/assets/771b91cd-2502-45b4-ab9a-2e8e08c807ad">
+</p>
+
+<p align="justify">
+&emsp; Hanya setelah itu baru kita dapat mendapatkan hash dari file malware <code>invest_20.dll</code> dengan <b>membuka terminal</b> dan menjalankan command <code>sha256sum [alamat file]</code>.
+</p>
+
+```sh
+sha256sum /home/fedora/Downloads/invest_20.dll 
+31cf42b2a7c5c558f44cfc67684cc344c17d4946d3a1e0b2cecb8eb58173cb2f  /home/fedora/Downloads/invest_20.dll
+```
+
+<p align="justify">
+&emsp; Setelah menjalankan command <code>sha256sum</code> pada file <code>invest_20.dll</code>, dapat disimpulkan bahwasannya hash dari file kedua dengan format SHA256 adalah <b>31cf42b2a7c5c558f44cfc67684cc344c17d4946d3a1e0b2cecb8eb58173cb2f</b>.
+</p>
 
 No. 15
 ===== Soal 15 =====
@@ -1258,117 +1333,6 @@ sha256sum knr.exe
 
 Output:
 749e161661290e8a2d190b1a66469744127bc25bf46e5d0c6f2e835f4b92db18
-
-
-
-
-No. 18
-
-<img width="1920" height="1003" alt="Screenshot From 2025-10-01 20-35-02" src="https://github.com/user-attachments/assets/f3a4654f-cee5-4f06-970f-2791aac087d3" />
-
-
-Statistics > Protocol Hierarchy
-
-3 protokol ada pada file PCAP ini dengan urutan jumlah bytes:
-TLS
-HTTP
-SMB
-
-Alasan memilih SMB sebagai kemungkinan tempat malware:
-1. Soal menyatakan malware diletakkan menggunakan metode berbeda. Soal 17 menggunakan HTTP sehingga tidak mungkin file berada pada HTTP.
-2. Soal ini tidak memberikan session key untuk decrypt protokol TLS. Sehingga tidak mungkin file disimpan di sana.
-
-Buka FILE -> Export Objects -> SMB…
-
-<img width="1920" height="1003" alt="Screenshot From 2025-10-01 20-50-51" src="https://github.com/user-attachments/assets/829ce389-d6f5-4343-821e-1a15b5098230" />
-
-
-Di sini ada dua file yang kemungkinan merupakan malware, yaitu kedua file dengan ekstensi .exe.
-
-
-Save kedua file. Gunakan command sha256sum untuk mengetahui hash dari kedua file.
-<img width="1920" height="1003" alt="Screenshot From 2025-10-01 20-51-18" src="https://github.com/user-attachments/assets/0d4b5bcc-0e6c-4be4-bdf8-a29195ed8cc9" />
-
-
-
-Output untuk file: %5cWINDOWS%5coiku9bu68cxqenfmcsos2aek6t07_guuisgxhllixv8dx2eemqddnhyh46l8n_di.exe 
-
-cf99990bee6c378cbf56239b3cc88276eec348d82740f84e9d5c343751f82560
-
-<img width="1920" height="1003" alt="Screenshot From 2025-10-01 20-52-21" src="https://github.com/user-attachments/assets/ba96bb43-336d-44d4-a9cb-5e595a2258e2" />
-
-
-Output untuk file:
-%5cWINDOWS%5cd0p2nc6ka3f_fixhohlycj4ovqfcy_smchzo_ub83urjpphrwahjwhv_o5c0fvf6.exe 
-
-59896ae5f3edcb999243c7bfdc0b17eb7fe28f3a66259d797386ea470c010040
-
-
-
-7054    1096.833911    10.6.26.110    10.6.26.6    SMB    219    NT Create AndX Request, FID: 0x4002, Path: \WINDOWS\d0p2nc6ka3f_fixhohlycj4ovqfcy_smchzo_ub83urjpphrwahjwhv_o5c0fvf6.exe
-
-7932    1096.944375    10.6.26.110    10.6.26.6    SMB    219    NT Create AndX Request, FID: 0x4003, Path: \WINDOWS\	
-
-
-No. 20
-
-<img width="1920" height="1003" alt="Screenshot From 2025-10-01 19-36-04" src="https://github.com/user-attachments/assets/486004da-d834-46ba-accf-8f16792f382c" />
-
-
-Statistics > Protocol Hierarchy
-
-TLS menjadi protokol dengan persentase Bytes terbesar pada PCAP. Memiliki potensi membawa malware.
-Filter:
-tls	
-
-<img width="1920" height="1003" alt="Screenshot From 2025-10-01 19-39-18" src="https://github.com/user-attachments/assets/7a40f897-1d40-450f-89ac-a3fc8bb144e6" />
-
-
-IP 10.4.1.101 merupakan IP dengan jumlah percakapan terbanyak dengan jumlah Bytes yang dikirim cukup besar pula, Merupakan IP private dan bukan IP eksternal dengan geolokasi. Potensi Malware.
-
-Lihat detail paket Server Hello -> Cipher Suite:
-TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
-
-Soal hanya membutuhkan TLS sebagai jawaban, tapi dari sini kita dapat mengetahui bahwa enkripsi yang digunakan oleh TLS adalah AES_128_GCM
-
-TLS bersifat ECDHE di mana membutuhkan client-side pre-master secrets (SSLKEYLOGFILE) (file log key dari client)
-
-Import file key log:
-Edit -> Preferences -> Protocols -> TLS -> (Pre)-Master-Secret log filename -> Browse… -> keyslogfile.txt (sudah disediakan) -> Apply -> OK
-
-<img width="1920" height="1003" alt="Screenshot From 2025-10-01 19-49-08" src="https://github.com/user-attachments/assets/b17ed666-c58d-4fcb-a4d0-611d8d3c663a" />
-
-
-Sekarang paket TLS sudah didekripsi dan muncul paket-paket dengan protokol HTTP.
-
-<img width="1920" height="1003" alt="Screenshot From 2025-10-01 19-50-22" src="https://github.com/user-attachments/assets/ec643924-240b-40aa-84cc-5ab8f506e1d4" />
-
-
-Gunakan filter:
-http && http.request.method == "GET"
-
-<img width="1920" height="1003" alt="Screenshot From 2025-10-01 19-52-15" src="https://github.com/user-attachments/assets/48a19e28-4063-4b69-a69d-cb55ba5e076a" />
-
-
-
-Export file:
-File -> Export Objects -> HTTP… -> invest_20.dll -> Save -> invest_20.dll
-
-<img width="1920" height="1003" alt="Screenshot From 2025-10-01 19-55-51" src="https://github.com/user-attachments/assets/771b91cd-2502-45b4-ab9a-2e8e08c807ad" />
-
-
-Gunakan command sha256sum untuk mengetahui hash dari invest_20.dll.
-
-<img width="1920" height="1003" alt="Screenshot From 2025-10-01 19-58-08" src="https://github.com/user-attachments/assets/929589d4-2400-44b8-9473-1b73e04726f1" />
-
-
-Output:
-31cf42b2a7c5c558f44cfc67684cc344c17d4946d3a1e0b2cecb8eb58173cb2f
-
-
-
-
-
 
 ## Kendala Pengerjaan
 
