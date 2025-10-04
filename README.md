@@ -1346,4 +1346,10 @@ sha256sum /home/fedora/Downloads/invest_20.dll
 
 ## Kendala Pengerjaan
 
-## Revisi
+<ol>
+	<li>
+		<p align="justify">
+			Beberapa kasus pertanyaan pada soal yang tertera pada <code>nc</code> atau netcat untuk soal 14-20, meminta nama dari file yang ditemukan dan tertera bahwasannya format yang diminta adalah <b>file.exe</b>. Hal ini cenderung tidak benar, dikarenakan beberapa file tidak memiliki ekstensi berupa <code>.exe</code>, sehingga cukup menbingungkan ketika melihat file yang ditemukan tidak sesuai dengan format yang diharapkan soal dan pada akhirnya membuang waktu untuk mencari jawaban yang "benar", meskipun dari awal sebenarnya sudah sesuai, hanya saja memiliki ekstensi yang berbeda seperti <code>.dll</code> atau <code>.doc</code>.
+		</p>
+	</li>
+</ol>
