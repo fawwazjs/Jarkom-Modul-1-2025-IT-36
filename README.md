@@ -114,6 +114,33 @@ ke masing-masing Ainur (Melkor, Manwe, Varda, Ulmo) dan masing-masing Ainur mela
     </ol>
 </blockquote>
 
+<img width="1920" height="1080" alt="Image" src="https://github.com/user-attachments/assets/4f54fba4-6ced-42ec-bbcc-bb049f9343b4" />
+
+<img width="1920" height="1080" alt="Image" src="https://github.com/user-attachments/assets/8b597da8-fb5a-4b51-b323-2f89937b1356" />
+
+<img width="1920" height="1080" alt="Image" src="https://github.com/user-attachments/assets/a18d793e-08e5-4e2b-a797-6b5385d90bd5" />
+
+<img width="1920" height="1080" alt="Image" src="https://github.com/user-attachments/assets/d0bed738-6a74-4948-a7b6-bead088cf4b2" />
+
+<img width="1920" height="1080" alt="Image" src="https://github.com/user-attachments/assets/da6bbdd6-ea41-4d41-b03e-058d44e31bae" />
+
+<img width="1920" height="1080" alt="Image" src="https://github.com/user-attachments/assets/ac0dc180-e087-4768-b584-af2b045522ba" />
+
+<img width="1920" height="1080" alt="Image" src="https://github.com/user-attachments/assets/97d54ff3-45ae-4726-a6b3-84d18e0d696a" />
+
+<img width="1920" height="1080" alt="Image" src="https://github.com/user-attachments/assets/f13b0cfa-dc3e-44ab-b2be-f8d81bffebcb" />
+
+<img width="1920" height="1080" alt="Image" src="https://github.com/user-attachments/assets/9d632dbd-d0a8-40c3-93d5-62e8ec640301" />
+
+<img width="1920" height="1080" alt="Image" src="https://github.com/user-attachments/assets/b9d4c69a-bc8b-4018-a6a5-b6576ae0ecfc" />
+
+<img width="1920" height="1080" alt="Image" src="https://github.com/user-attachments/assets/f770e236-a76b-448c-9dce-01f8e72342db" />
+
+<img width="1920" height="1080" alt="Image" src="https://github.com/user-attachments/assets/20e82c8f-b388-42e3-bfa6-c9645f44d2a2" />
+
+<img width="1920" height="1080" alt="Image" src="https://github.com/user-attachments/assets/ae23ec34-9daf-49b3-835d-5c14904056c9" />
+
+
 ### • Soal 6
 <blockquote>
     <ol start="6">
