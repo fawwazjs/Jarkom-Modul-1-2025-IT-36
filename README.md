@@ -63,8 +63,8 @@ Rasulullah Shallallāhu ‘alaihi wa Sallam pernah bersabda:
 </blockquote>
 Melakukan   
 ```bash
-ping  google.com -c 3   
-```   
+ping google.com -c 3
+``` 
 ke Eru
 <img width="1920" height="1080" alt="Image" src="https://github.com/user-attachments/assets/65761b8f-dd93-44e6-b4c6-0dc9760fbeee" />
 
