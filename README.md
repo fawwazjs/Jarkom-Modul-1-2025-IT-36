@@ -259,11 +259,23 @@ Congratulations! Here is your flag: KOMJAR25{Brut3_F0rc3_LlP4CsiExCnDT7yPEZP3GTJ
 </p>
 
 <p align="justify">
-&emsp; Sehingga, untuk mengetahui secara definitif data terkait username dan password yang digunakan untuk login, kita bisa beralih ke paket request yang direspon oleh frame 50320, yaitu paket pada frame <b>500315</b> dengan cara menggunakan menu <code>Go > Go to Packet... > 50315</code>.
+&emsp; Sehingga, untuk mengetahui secara definitif data terkait username dan password yang digunakan untuk login, kita bisa beralih ke paket request yang direspon oleh frame 50320, yaitu paket pada frame <b>50315</b> dengan cara menggunakan menu <code>Go > Go to Packet... > 50315</code>.
 </p>
 
 <p align="center">
 	<img width="80%" height="80%" alt="e" src="https://github.com/user-attachments/assets/6abc8840-599d-4dc4-a00f-1373eaea0491">
+</p>
+
+<p align="justify">
+&emsp; Setelah mendapatkan paket request dari client, maka langkah selanjutnya adalah untuk membuka <b>stream HTTP</b> dari paket tersebut melalui menu <code>Follow > HTTP Stream</code>.
+</p>
+
+<p align="center">
+	<img width="80%" height="80%" alt="f" src="https://github.com/user-attachments/assets/3497a93a-d9f8-4cf9-a090-756d851a0628">
+</p>
+
+<p align="justify">
+&emsp; Berdasarkan screenshot di atas, dapat disimpulkan bahwasannya username yang berhasil digunakan untuk login adalah <b>=n1enna</b> dan password yang digunakan adalah <b>y4v4nn4_k3m3nt4r1</b>. 
 </p>
 
 #### • Soal 14.c: In which stream were the credentials found?
@@ -485,23 +497,6 @@ Congratulations! Here is your flag: KOMJAR25{B3ware_0f_M4lw4re_yau7ElDfafuTufKs0
 #### • Soal 20.c: What is the hash of the file containing the malware?
 
 No. 14
-<img width="1920" height="921" alt="Screenshot From 2025-09-30 14-17-19" src="https://github.com/user-attachments/assets/6abc8840-599d-4dc4-a00f-1373eaea0491" />
-
-]t]EN@@Qe^@R 8|
-ja=POST /login.php HTTP/1.1 
-Host: 192.168.129.101:8000 
-User-Agent: Fuzz Faster U Fool v2.1.0-dev 
-Content-Length: 42 
-Content-Type: application/x-www-form-urlencoded 
-Accept-Encoding: gzip 
- 
-username=n1enna&password=y4v4nn4_k3m3nt4r1
-
-<img width="1920" height="1001" alt="Screenshot From 2025-09-30 14-18-37" src="https://github.com/user-attachments/assets/3497a93a-d9f8-4cf9-a090-756d851a0628" />
-
-Follow HTTP Stream ^
-n1enna:y4v4nn4_k3m3nt4r1
-
 Transmission Control Protocol, Src Port: 42334, Dst Port: 8000, Seq: 1, Ack: 1, Len: 233
     Source Port: 42334
     Destination Port: 8000
