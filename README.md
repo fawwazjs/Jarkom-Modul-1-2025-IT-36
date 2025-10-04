@@ -61,9 +61,10 @@ Rasulullah Shallallāhu ‘alaihi wa Sallam pernah bersabda:
         </li>
     </ol>
 </blockquote>
-Melakukan ```bash
-ping  google.com -c 3
-``` 
+Melakukan   
+```bash
+ping  google.com -c 3   
+```   
 ke Eru
 <img width="1920" height="1080" alt="Image" src="https://github.com/user-attachments/assets/65761b8f-dd93-44e6-b4c6-0dc9760fbeee" />
 
@@ -76,10 +77,10 @@ ke Eru
         </li>
     </ol>
 </blockquote>
-Melakukan 
+Melakukan   
 ```bash
-ping [IP Ainur] -c 3
-``` 
+ping [IP Ainur] -c 3   
+```   
 ke masing-masing Ainur (Melkor, Manwe, Varda, Ulmo) dan masing-masing Ainur melakukan ping IP dengan Ainur lainnya.
 <img width="1920" height="1080" alt="Image" src="https://github.com/user-attachments/assets/fc8952e9-4e99-40eb-9452-0dfc7362a355" />
 <img width="1920" height="1080" alt="Image" src="https://github.com/user-attachments/assets/f76e1dc0-15ec-4c86-aebc-80e61169b0db" />
